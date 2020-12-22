@@ -6,6 +6,7 @@ use App\Entity\Todo;
 use App\Entity\User;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -16,8 +17,15 @@ class TodoType extends AbstractType
         $builder
             ->add('title')
             ->add('description')
-            ->add('date')
-            ->add('endDate')
+            ->add('date', DateType::class, [
+                'widget' => 'single_text',
+                'format' => 'yyyy-MM-dd'
+            ])
+            ->add('endDate', DateType::class, [
+                'widget' => 'single_text',
+                'format' => 'yyyy-MM-dd',
+                'required' => false
+            ])
             ->add('owner', EntityType::class, [
                 'class' => User::class,
                 'choice_label' => 'username'
