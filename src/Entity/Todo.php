@@ -4,8 +4,17 @@ namespace App\Entity;
 
 use App\Repository\TodoRepository;
 use Doctrine\ORM\Mapping as ORM;
+use ApiPlatform\Core\Annotation\ApiResource;
+use ApiPlatform\Core\Annotation\ApiFilter;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\DateFilter;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\ExistsFilter;
 
 /**
+ * @ApiResource()
+ * @ApiFilter(DateFilter::class, properties={"date"})
+ * @ApiFilter(SearchFilter::class, properties={"date"})
+ * @ApiFilter(ExistsFilter::class, properties={"endDate"})
  * @ORM\Entity(repositoryClass=TodoRepository::class)
  */
 class Todo
