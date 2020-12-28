@@ -35,11 +35,11 @@
                 </li>
                 {% if app.user %}
                     <li><a class="nav-link" href="{{ path('app_logout') }}">Logout</a></li>
-                {% else %}
-                    <li><a class="nav-link" href="{{ path('app_login') }}">Login</a></li>
                     <li>
                         <a class="nav-link" href="{{ path('registration') }}">Register</a>
                     </li>
+                {% else %}
+                    <li><a class="nav-link" href="{{ path('app_login') }}">Login</a></li>
                 {% endif %}
             </ul>
             <form class="d-flex">

@@ -8,6 +8,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 class RegistrationController extends AbstractController
 {
@@ -20,6 +21,7 @@ class RegistrationController extends AbstractController
 
     /**
      * @Route("/registration", name="registration")
+     * @IsGranted("ROLE_USER")
      */
     public function index(Request $request)
     {
