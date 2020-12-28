@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}ObjectAddress index{% endblock %}
+
+{% block body %}
+    <h1>ObjectAddress index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Street</th>
+                <th>StreetNumber</th>
+                <th>PhoneNumber</th>
+                <th>Email</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for object_address in object_addresses %}
+            <tr>
+                <td>{{ object_address.id }}</td>
+                <td>{{ object_address.name }}</td>
+                <td>{{ object_address.street }}</td>
+                <td>{{ object_address.streetNumber }}</td>
+                <td>{{ object_address.phoneNumber }}</td>
+                <td>{{ object_address.email }}</td>
+                <td>
+                    <a href="{{ path('object_address_show', {'id': object_address.id}) }}">show</a>
+                    <a href="{{ path('object_address_edit', {'id': object_address.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('object_address_new') }}">Create new</a>
+{% endblock %}
