@@ -2,6 +2,7 @@
 
 namespace App\Form;
 
+use App\Entity\ObjectAddress;
 use App\Entity\Todo;
 use App\Entity\User;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -44,6 +45,13 @@ class TodoType extends AbstractType
             ->add('owner', EntityType::class, [
                 'class' => User::class,
                 'choice_label' => 'username',
+                'attr' => [
+                    'class' => 'form-select'
+                ]
+            ])
+            ->add('objectAddress', EntityType::class, [
+                'class' => ObjectAddress::class,
+                'choice_label' => 'name',
                 'attr' => [
                     'class' => 'form-select'
                 ]

@@ -52,6 +52,12 @@ class Todo
      */
     private $owner;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=ObjectAddress::class, inversedBy="todos")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $objectAddress;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -113,6 +119,18 @@ class Todo
     public function setOwner(?User $owner): self
     {
         $this->owner = $owner;
+
+        return $this;
+    }
+
+    public function getObjectAddress(): ?ObjectAddress
+    {
+        return $this->objectAddress;
+    }
+
+    public function setObjectAddress(?ObjectAddress $objectAddress): self
+    {
+        $this->objectAddress = $objectAddress;
 
         return $this;
     }

@@ -4,7 +4,7 @@
 
 {% block body %}
     <h1>Todo index</h1>
-
+    <a class="btn btn-outline-primary" href="{{ path('todo_new') }}">Create new</a>
     <table class="table">
         <thead>
             <tr>
@@ -37,5 +37,4 @@
         </tbody>
     </table>
 
-    <a href="{{ path('todo_new') }}">Create new</a>
 {% endblock %}
