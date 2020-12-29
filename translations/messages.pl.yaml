@@ -1,0 +1,10 @@
+menu:
+  home: Strona główna
+  users: Użytkownicy
+  todos: Do zrobienia
+  objects: Lokalizacje
+  machinery: Maszyny
+  complaints: Reklamacje
+  logout: Wyloguj
+  register: Dodaj użytkownika
+  login: Zaloguj

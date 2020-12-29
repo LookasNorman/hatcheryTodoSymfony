@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
     <div class="container-fluid">
-        <a class="navbar-brand" href={{ path('main_page') }}>Navbar</a>
+        <a class="navbar-brand" href="http://lookaskonieczny.pl">Lookas</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -8,46 +8,55 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href={{ path('main_page') }}>Home</a>
+                    <a class="nav-link active" aria-current="page" href={{ path('main_page') }}>
+                        {% trans %}menu.home{% endtrans %}
+                    </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ path('user_index') }}">Users</a>
+                    <a class="nav-link" href="{{ path('user_index') }}">
+                        {% trans %}menu.users{% endtrans %}
+                    </a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                        data-bs-toggle="dropdown" aria-expanded="false">
-                        Todos
+                        {% trans %}menu.todos{% endtrans %}
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                         {{ render(controller('App\\Controller\\ObjectAddressController::menuObject')) }}
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+                    <a class="nav-link" href="{{ path('object_address_index') }}">
+                        {% trans %}menu.objects{% endtrans %}
+                    </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ path('object_address_index') }}">Objects</a>
+                    <a class="nav-link" href="{{ path('machines_index') }}">
+                        {% trans %}menu.machinery{% endtrans %}
+                    </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ path('machines_index') }}">Machinery</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ path('complaints_index') }}">Complaints</a>
+                    <a class="nav-link" href="{{ path('complaints_index') }}">
+                        {% trans %}menu.complaints{% endtrans %}
+                    </a>
                 </li>
 
                 {% if app.user %}
-                    <li><a class="nav-link" href="{{ path('app_logout') }}">Logout</a></li>
+                    <li><a class="nav-link" href="{{ path('app_logout') }}">
+                            {% trans %}menu.logout{% endtrans %}
+                        </a></li>
                     <li>
-                        <a class="nav-link" href="{{ path('registration') }}">Register</a>
+                        <a class="nav-link" href="{{ path('registration') }}">
+                            {% trans %}menu.register{% endtrans %}
+                        </a>
                     </li>
                 {% else %}
-                    <li><a class="nav-link" href="{{ path('app_login') }}">Login</a></li>
+                    <li><a class="nav-link" href="{{ path('app_login') }}">
+                            {% trans %}menu.login{% endtrans %}
+                        </a></li>
                 {% endif %}
             </ul>
-            {# <form class="d-flex"> #}
-            {# <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"> #}
-            {# <button class="btn btn-outline-success" type="submit">Search</button> #}
-            {# </form> #}
         </div>
     </div>
 </nav>

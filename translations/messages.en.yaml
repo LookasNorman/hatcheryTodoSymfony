@@ -1,0 +1,10 @@
+menu:
+  home: Home page
+  users: Users
+  todos: Todos
+  objects: Objects
+  machinery: Machinery
+  complaints: Complaints
+  logout: Logout
+  register: Register
+  login: Login

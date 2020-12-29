@@ -20,7 +20,12 @@ class RegistrationController extends AbstractController
     }
 
     /**
-     * @Route("/registration", name="registration")
+     * @Route("/{_locale}/registration", name="registration",
+     *     locale="pl",
+     *     requirements={
+     *         "_locale": "en|pl",
+     *      }
+     * )
      * @IsGranted("ROLE_USER")
      */
     public function index(Request $request)

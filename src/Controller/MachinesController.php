@@ -5,13 +5,20 @@ namespace App\Controller;
 use App\Entity\Machines;
 use App\Form\MachinesType;
 use App\Repository\MachinesRepository;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("/machines")
+ * @Route("/{_locale}/machines",
+ *     locale="pl",
+ *     requirements={
+ *         "_locale": "en|pl",
+ *      }
+ * )
+ * @IsGranted("ROLE_USER")
  */
 class MachinesController extends AbstractController
 {
@@ -83,7 +90,7 @@ class MachinesController extends AbstractController
      */
     public function delete(Request $request, Machines $machine): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$machine->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $machine->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($machine);
             $entityManager->flush();

@@ -13,7 +13,12 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("/todo")
+ * @Route("/{_locale}/todo",
+ *     locale="pl",
+ *     requirements={
+ *         "_locale": "en|pl",
+ *      }
+ * )
  * @IsGranted("ROLE_USER")
  */
 class TodoController extends AbstractController
