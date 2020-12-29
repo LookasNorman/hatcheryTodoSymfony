@@ -51,9 +51,15 @@ class ObjectAddress
      */
     private $todos;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Machines::class, mappedBy="objectAddress")
+     */
+    private $machines;
+
     public function __construct()
     {
         $this->todos = new ArrayCollection();
+        $this->machines = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -145,6 +151,36 @@ class ObjectAddress
             // set the owning side to null (unless already changed)
             if ($todo->getObjectAddress() === $this) {
                 $todo->setObjectAddress(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Machines[]
+     */
+    public function getMachines(): Collection
+    {
+        return $this->machines;
+    }
+
+    public function addMachine(Machines $machine): self
+    {
+        if (!$this->machines->contains($machine)) {
+            $this->machines[] = $machine;
+            $machine->setObjectAddress($this);
+        }
+
+        return $this;
+    }
+
+    public function removeMachine(Machines $machine): self
+    {
+        if ($this->machines->removeElement($machine)) {
+            // set the owning side to null (unless already changed)
+            if ($machine->getObjectAddress() === $this) {
+                $machine->setObjectAddress(null);
             }
         }
 
