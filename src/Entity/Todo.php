@@ -58,6 +58,11 @@ class Todo
      */
     private $objectAddress;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Machines::class, inversedBy="todos")
+     */
+    private $machine;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -131,6 +136,18 @@ class Todo
     public function setObjectAddress(?ObjectAddress $objectAddress): self
     {
         $this->objectAddress = $objectAddress;
+
+        return $this;
+    }
+
+    public function getMachine(): ?Machines
+    {
+        return $this->machine;
+    }
+
+    public function setMachine(?Machines $machine): self
+    {
+        $this->machine = $machine;
 
         return $this;
     }

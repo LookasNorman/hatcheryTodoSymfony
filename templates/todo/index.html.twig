@@ -7,14 +7,16 @@
     <a class="btn btn-outline-primary" href="{{ path('todo_new') }}">Create new</a>
     <table class="table">
         <thead>
-            <tr>
-                <th>Id</th>
-                <th>Title</th>
-                <th>Description</th>
-                <th>Date</th>
-                <th>EndDate</th>
-                <th>actions</th>
-            </tr>
+        <tr>
+            <th>Id</th>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Machine</th>
+            <th>Object</th>
+            <th>Date</th>
+            <th>EndDate</th>
+            <th>actions</th>
+        </tr>
         </thead>
         <tbody>
         {% for todo in todos %}
@@ -22,6 +24,20 @@
                 <td>{{ todo.id }}</td>
                 <td>{{ todo.title }}</td>
                 <td>{{ todo.description }}</td>
+                <td>
+                    {% if todo.machine is empty %}
+                        ---
+                    {% else %}
+                        {{ todo.machine.name }}
+                    {% endif %}
+                </td>
+                <td>
+                    {% if todo.objectAddress is empty %}
+                        ---
+                    {% else %}
+                        {{ todo.objectAddress.name }}
+                    {% endif %}
+                </td>
                 <td>{{ todo.date ? todo.date|date('Y-m-d') : '' }}</td>
                 <td>{{ todo.endDate ? todo.endDate|date('Y-m-d') : '' }}</td>
                 <td>

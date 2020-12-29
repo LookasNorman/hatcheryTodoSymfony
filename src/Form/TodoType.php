@@ -2,6 +2,7 @@
 
 namespace App\Form;
 
+use App\Entity\Machines;
 use App\Entity\ObjectAddress;
 use App\Entity\Todo;
 use App\Entity\User;
@@ -52,6 +53,16 @@ class TodoType extends AbstractType
             ->add('objectAddress', EntityType::class, [
                 'class' => ObjectAddress::class,
                 'choice_label' => 'name',
+                'attr' => [
+                    'class' => 'form-select'
+                ]
+            ])
+            ->add('machine', EntityType::class, [
+                'placeholder' => 'Choose an machine or null',
+                'class' => Machines::class,
+                'choice_label' => function(Machines $machines) {
+                    return $machines->getName() . ' - ' . $machines->getObjectAddress()->getName();
+                },
                 'attr' => [
                     'class' => 'form-select'
                 ]
