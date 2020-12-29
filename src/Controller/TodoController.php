@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\ObjectAddress;
 use App\Entity\Todo;
 use App\Form\TodoType;
 use App\Repository\TodoRepository;
@@ -19,7 +20,6 @@ class TodoController extends AbstractController
 {
     /**
      * @Route("/", name="todo_index", methods={"GET"})
-     *
      */
     public function index(TodoRepository $todoRepository): Response
     {
@@ -96,5 +96,18 @@ class TodoController extends AbstractController
         }
 
         return $this->redirectToRoute('todo_index');
+    }
+
+    /**
+     * @Route("/menu/{id}", name="todo_menu", methods={"GET"})
+     */
+    public function objectTodo(ObjectAddress $objectAddress, TodoRepository $todoRepository)
+    {
+        return $this->render('todo/index.html.twig', [
+            'todos' => $todoRepository->findBy(['objectAddress' => $objectAddress], [
+                'endDate' => 'ASC',
+                'date' => 'ASC'
+            ]),
+        ]);
     }
 }

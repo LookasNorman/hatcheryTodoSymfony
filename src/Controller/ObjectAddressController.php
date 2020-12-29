@@ -91,4 +91,11 @@ class ObjectAddressController extends AbstractController
 
         return $this->redirectToRoute('object_address_index');
     }
+
+    public function menuObject(ObjectAddressRepository $objectAddressRepository)
+    {
+        return $this->render('menu/objectAddress_list.html.twig', [
+            'object_addresses' => $objectAddressRepository->findBy([], ['name' => 'ASC']),
+        ]);
+    }
 }

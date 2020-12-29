@@ -1,0 +1,7 @@
+{% for object_address in object_addresses %}
+    <li>
+        <a class="dropdown-item" href={{ path('todo_menu', {'id': object_address.id}) }}>
+            {{ object_address.name }}
+        </a>
+    </li>
+{% endfor %}
