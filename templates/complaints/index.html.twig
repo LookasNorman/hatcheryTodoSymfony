@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Complaints index{% endblock %}
+
+{% block body %}
+    <h1>Complaints index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>PartName</th>
+                <th>Description</th>
+                <th>FilingDate</th>
+                <th>RemovalDate</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for complaint in complaints %}
+            <tr>
+                <td>{{ complaint.id }}</td>
+                <td>{{ complaint.partName }}</td>
+                <td>{{ complaint.description }}</td>
+                <td>{{ complaint.filingDate ? complaint.filingDate|date('Y-m-d') : '' }}</td>
+                <td>{{ complaint.removalDate ? complaint.removalDate|date('Y-m-d') : '' }}</td>
+                <td>
+                    <a href="{{ path('complaints_show', {'id': complaint.id}) }}">show</a>
+                    <a href="{{ path('complaints_edit', {'id': complaint.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('complaints_new') }}">Create new</a>
+{% endblock %}

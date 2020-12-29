@@ -20,12 +20,6 @@
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                         {{ render(controller('App\\Controller\\ObjectAddressController::menuObject')) }}
-{#                        <li><a class="dropdown-item" href="#">Action</a></li>#}
-{#                        <li><a class="dropdown-item" href="#">Another action</a></li>#}
-{#                        <li>#}
-{#                            <hr class="dropdown-divider">#}
-{#                        </li>#}
-{#                        <li><a class="dropdown-item" href="#">Something else here</a></li>#}
                     </ul>
                 </li>
                 <li class="nav-item">
@@ -37,6 +31,10 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{{ path('machines_index') }}">Machinery</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('complaints_index') }}">Complaints</a>
+                </li>
+
                 {% if app.user %}
                     <li><a class="nav-link" href="{{ path('app_logout') }}">Logout</a></li>
                     <li>

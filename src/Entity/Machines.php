@@ -36,9 +36,15 @@ class Machines
      */
     private $todos;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Complaints::class, mappedBy="machine")
+     */
+    private $complaints;
+
     public function __construct()
     {
         $this->todos = new ArrayCollection();
+        $this->complaints = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -94,6 +100,36 @@ class Machines
             // set the owning side to null (unless already changed)
             if ($todo->getMachine() === $this) {
                 $todo->setMachine(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Complaints[]
+     */
+    public function getComplaints(): Collection
+    {
+        return $this->complaints;
+    }
+
+    public function addComplaint(Complaints $complaint): self
+    {
+        if (!$this->complaints->contains($complaint)) {
+            $this->complaints[] = $complaint;
+            $complaint->setMachine($this);
+        }
+
+        return $this;
+    }
+
+    public function removeComplaint(Complaints $complaint): self
+    {
+        if ($this->complaints->removeElement($complaint)) {
+            // set the owning side to null (unless already changed)
+            if ($complaint->getMachine() === $this) {
+                $complaint->setMachine(null);
             }
         }
 
