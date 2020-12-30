@@ -59,6 +59,7 @@ class TodoType extends AbstractType
             ])
             ->add('machine', EntityType::class, [
                 'placeholder' => 'Choose an machine or null',
+                'required' => false,
                 'class' => Machines::class,
                 'choice_label' => function(Machines $machines) {
                     return $machines->getName() . ' - ' . $machines->getObjectAddress()->getName();
