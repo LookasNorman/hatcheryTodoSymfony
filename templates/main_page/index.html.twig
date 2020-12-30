@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Maintenance department{% endblock %}
+{% block title %}{% trans %}site.title{% endtrans %}{% endblock %}
 
 {% block body %}
 <style>
@@ -9,9 +9,9 @@
 </style>
 
 <div class="example-wrapper">
-    <h1>Maintenance department</h1>
+    <h1>{% trans %}site.title{% endtrans %}</h1>
 
-    Strona startowa aplikacji z listą zadań do wykonania:
+    {% trans %}site.description{% endtrans %}
 
 </div>
 {% endblock %}

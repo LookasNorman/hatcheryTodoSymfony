@@ -1,3 +1,6 @@
+site:
+  title: Maintenance management system
+  description: An application that helps to manage the maintenance team's tasks, complaints to external suppliers and parts purchases.
 menu:
   home: Home page
   users: Users

@@ -1,3 +1,6 @@
+site:
+  title: System zarządzania utrzymania ruchu
+  description: Aplikacja pomagająca zarządzać zadaniami zespołu utrzymania ruchu, zgłaszanymi reklamacjami do dostawców zewnętrznych oraz zakupami części.
 menu:
   home: Strona główna
   users: Użytkownicy
