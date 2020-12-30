@@ -14,6 +14,9 @@
             <tr>
                 <th>{% trans %}list.id{% endtrans %}</th>
                 <th>{% trans %}list.orders.name{% endtrans %}</th>
+                <th>{% trans %}list.orders.date{% endtrans %}</th>
+                <th>{% trans %}list.orders.orderDate{% endtrans %}</th>
+                <th>{% trans %}list.orders.deliveryDate{% endtrans %}</th>
                 <th>{% trans %}list.orders.supplier{% endtrans %}</th>
                 <th>{% trans %}list.actions{% endtrans %}</th>
             </tr>
@@ -23,6 +26,9 @@
             <tr>
                 <td>{{ order.id }}</td>
                 <td>{{ order.Name }}</td>
+                <td>{{ order.date ? order.date|date('Y-m-d') : ''}}</td>
+                <td>{{ order.orderDate ? order.orderDate|date('Y-m-d') : ''}}</td>
+                <td>{{ order.deliveryDate ? order.deliveryDate|date('Y-m-d') : ''}}</td>
                 <td>{{ order.supplier }}</td>
                 <td>
                     <a href="{{ path('orders_show', {'id': order.id}) }}">

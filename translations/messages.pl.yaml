@@ -91,6 +91,9 @@ list:
     name: Nazwa
     description: Opis
     supplier: Dostawca
+    date: Data zgłoszenia
+    orderDate: Data zamówienia
+    deliveryDate: Data dostawy
     new:
       title: Nowe zamówienie
       create: Dodaj zamówienie

@@ -23,6 +23,18 @@
                 <th>{% trans %}list.orders.supplier{% endtrans %}</th>
                 <td>{{ order.supplier }}</td>
             </tr>
+            <tr>
+                <th>{% trans %}list.orders.date{% endtrans %}</th>
+                <td>{{ order.date ? order.date|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>{% trans %}list.orders.orderDate{% endtrans %}</th>
+                <td>{{ order.orderDate ? order.orderDate|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>{% trans %}list.orders.deliveryDate{% endtrans %}</th>
+                <td>{{ order.deliveryDate ? order.deliveryDate|date('Y-m-d') : '' }}</td>
+            </tr>
         </tbody>
     </table>
 

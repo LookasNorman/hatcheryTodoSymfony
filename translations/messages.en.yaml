@@ -91,6 +91,9 @@ list:
     name: Orders
     description: Description
     supplier: Supplier
+    date: Filing date
+    orderDate: Order date
+    deliveryDate: Delivery date
     new:
       title: New orders
       create: Add orders

@@ -40,6 +40,30 @@ class Orders
      */
     private $supplier;
 
+    /**
+     * @ORM\Column(type="date")
+     */
+    private $date;
+
+    /**
+     * @ORM\Column(type="date", nullable=true)
+     */
+    private $orderDate;
+
+    /**
+     * @ORM\Column(type="date", nullable=true)
+     */
+    private $deliveryDate;
+
+    /**
+     * Orders constructor.
+     * @param $date
+     */
+    public function __construct()
+    {
+        $this->date = new \DateTime();
+    }
+
     public function getId(): ?int
     {
         return $this->id;
@@ -89,6 +113,42 @@ class Orders
     public function setSupplier(?string $supplier): self
     {
         $this->supplier = $supplier;
+
+        return $this;
+    }
+
+    public function getDate(): ?\DateTimeInterface
+    {
+        return $this->date;
+    }
+
+    public function setDate(\DateTimeInterface $date): self
+    {
+        $this->date = $date;
+
+        return $this;
+    }
+
+    public function getOrderDate(): ?\DateTimeInterface
+    {
+        return $this->orderDate;
+    }
+
+    public function setOrderDate(?\DateTimeInterface $orderDate): self
+    {
+        $this->orderDate = $orderDate;
+
+        return $this;
+    }
+
+    public function getDeliveryDate(): ?\DateTimeInterface
+    {
+        return $this->deliveryDate;
+    }
+
+    public function setDeliveryDate(?\DateTimeInterface $deliveryDate): self
+    {
+        $this->deliveryDate = $deliveryDate;
 
         return $this;
     }

@@ -6,6 +6,7 @@ use App\Entity\ObjectAddress;
 use App\Entity\Orders;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -26,6 +27,22 @@ class OrdersType extends AbstractType
                 ]
             ])
             ->add('supplier', TextType::class, [
+                'required' => false,
+                'attr' => [
+                    'class' => 'form-control'
+                ]
+            ])
+            ->add('orderDate', DateType::class, [
+                'widget' => 'single_text',
+                'format' => 'yyyy-MM-dd',
+                'required' => false,
+                'attr' => [
+                    'class' => 'form-control'
+                ]
+            ])
+            ->add('deliveryDate', DateType::class, [
+                'widget' => 'single_text',
+                'format' => 'yyyy-MM-dd',
                 'required' => false,
                 'attr' => [
                     'class' => 'form-control'
