@@ -78,7 +78,18 @@ class TodoController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
+            $em = $this->getDoctrine()->getManager();
+            $em->flush();
+            if (!empty($todo->getRepeatTime())) {
+                $days = $todo->getRepeatTime();
+                $date = $todo->getEndDate();
+                $date->add(new \DateInterval('P'.$days.'D'));
+                $newTodo = clone $todo;
+                $newTodo->setDate($date);
+                $newTodo->setEndDate(null);
+                $em->persist($newTodo);
+                $em->flush();
+            }
 
             return $this->redirectToRoute('todo_index');
         }
@@ -94,7 +105,7 @@ class TodoController extends AbstractController
      */
     public function delete(Request $request, Todo $todo): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$todo->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $todo->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($todo);
             $entityManager->flush();

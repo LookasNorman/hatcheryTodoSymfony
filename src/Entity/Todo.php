@@ -63,6 +63,11 @@ class Todo
      */
     private $machine;
 
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $repeatTime;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -148,6 +153,18 @@ class Todo
     public function setMachine(?Machines $machine): self
     {
         $this->machine = $machine;
+
+        return $this;
+    }
+
+    public function getRepeatTime(): ?int
+    {
+        return $this->repeatTime;
+    }
+
+    public function setRepeatTime(?int $repeatTime): self
+    {
+        $this->repeatTime = $repeatTime;
 
         return $this;
     }
