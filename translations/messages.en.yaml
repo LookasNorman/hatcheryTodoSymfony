@@ -8,6 +8,7 @@ menu:
   objects: Objects
   machinery: Machinery
   complaints: Complaints
+  orders: Orders
   logout: Logout
   register: Register
   login: Login
@@ -21,6 +22,7 @@ form:
     user: user
     todo: todo
     object_address: object address
+    orders: orders
 list:
   list: List
   id: ID
@@ -84,3 +86,13 @@ list:
       create: Create new user
     show:
       title: User details
+  orders:
+    title: orders
+    name: Orders
+    description: Description
+    supplier: Supplier
+    new:
+      title: New orders
+      create: Add orders
+    show:
+      title: Orders details

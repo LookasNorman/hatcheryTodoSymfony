@@ -11,7 +11,12 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("/orders")
+ * @Route("/{_locale}/orders",
+ *     locale="pl",
+ *     requirements={
+ *         "_locale": "en|pl",
+ *      }
+ * )
  */
 class OrdersController extends AbstractController
 {

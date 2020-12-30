@@ -41,6 +41,11 @@
                         {% trans %}menu.complaints{% endtrans %}
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('orders_index') }}">
+                        {% trans %}menu.orders{% endtrans %}
+                    </a>
+                </li>
 
                 {% if app.user %}
                     <li><a class="nav-link" href="{{ path('app_logout') }}">

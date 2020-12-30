@@ -8,6 +8,7 @@ menu:
   objects: Lokalizacje
   machinery: Maszyny
   complaints: Reklamacje
+  orders: Zamówienia
   logout: Wyloguj
   register: Dodaj użytkownika
   login: Zaloguj
@@ -21,6 +22,7 @@ form:
     user: użytkownika
     todo: zadanie
     object_address: lokalizację
+    orders: zamówienie
 list:
   list: Wykaz
   id: Lp.
@@ -84,3 +86,13 @@ list:
       create: Dodaj użytkownika
     show:
       title: Szczegóły użytkownika
+  orders:
+    title: zamówień
+    name: Nazwa
+    description: Opis
+    supplier: Dostawca
+    new:
+      title: Nowe zamówienie
+      create: Dodaj zamówienie
+    show:
+      title: Szczegóły zamówienia

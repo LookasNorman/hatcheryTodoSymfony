@@ -1,13 +1,15 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit Orders{% endblock %}
+{% block title %}{% trans %}form.edit{% endtrans %} {% trans %}form.title.orders{% endtrans %}{% endblock %}
 
 {% block body %}
-    <h1>Edit Orders</h1>
+    <h1>{% trans %}form.edit{% endtrans %} {% trans %}form.title.orders{% endtrans %}</h1>
 
     {{ include('orders/_form.html.twig', {'button_label': 'Update'}) }}
 
-    <a href="{{ path('orders_index') }}">back to list</a>
+    <a class="btn btn-outline-primary" href="{{ path('orders_index') }}">
+        {% trans %}form.back{% endtrans %}
+    </a>
 
     {{ include('orders/_delete_form.html.twig') }}
 {% endblock %}
