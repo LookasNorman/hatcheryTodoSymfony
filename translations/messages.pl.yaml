@@ -32,10 +32,20 @@ list:
     description: Opis
     filingDate: Data zgłoszenia
     removalDate: Data usunięcia
+    new:
+      title: Nowe zgłoszenie
+      create: Utwórz nowe zgłoszenie
+    show:
+      title: Szczegóły reklamacji
   machines:
     title: maszyn
     name: Nazwa
     objectAddress: Lokalizacja
+    new:
+      title: Nowa maszyna
+      create: Dodaj maszynę
+    show:
+      title: Detale maszyny
   objectAddress:
     title: lokalizacji
     name: Nazwa
@@ -43,6 +53,11 @@ list:
     streetNumber: Numer domu/mieszkania
     phoneNumber: Numer telefonu
     email: Adres email
+    new:
+      title: Nowa lokalizacja
+      create: Dodaj lokalizację
+    show:
+      title: Szczegóły lokalizacji
   todo:
     title: zadań
     name: Nazwa
@@ -51,8 +66,18 @@ list:
     object: Lokalizacja
     date: Planowana data
     endDate: Data zakończenia
+    new:
+      title: Nowe zadanie
+      create: Dodaj nowe zadanie
+    show:
+      title: Szczegóły zadania
   user:
     title: użytkowników
     email: Adres email
     firstname: Imię
     lastname: Nazwisko
+    new:
+      title: Nowy użytkownik
+      create: Dodaj użytkownika
+    show:
+      title: Szczegóły użytkownika

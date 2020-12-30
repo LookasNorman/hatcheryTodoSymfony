@@ -32,10 +32,20 @@ list:
     description: Description
     filingDate: Filing date
     removalDate: Removal date
+    new:
+      title: New complaints
+      create: Create new complaints
+    show:
+      title: Complaints details
   machines:
     title: machines
     name: Name
     objectAddress: Object address
+    new:
+      title: New machine
+      create: Create new machine
+    show:
+      title: Machines details
   objectAddress:
     title: object addresses
     name: Name
@@ -43,6 +53,11 @@ list:
     streetNumber: Street number/flat number
     phoneNumber: Phone number
     email: Email
+    new:
+      title: New object address
+      create: Create object address
+    show:
+      title: Object address details
   todo:
     title: todo
     name: Name
@@ -51,8 +66,18 @@ list:
     object: Object addrress
     date: Date
     endDate: End date
+    new:
+      title: New todo
+      create: Create new todo
+    show:
+      title: Todo details
   user:
     title: users
     email: Email
     firstname: Firstname
     lastname: Lastname
+    new:
+      title: New user
+      create: Create new user
+    show:
+      title: User details

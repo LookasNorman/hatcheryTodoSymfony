@@ -1,38 +1,42 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Todo{% endblock %}
+{% block title %}{% trans %}list.todo.show.title{% endtrans %}{% endblock %}
 
 {% block body %}
-    <h1>Todo</h1>
+    <h1>{% trans %}list.todo.show.title{% endtrans %}</h1>
 
     <table class="table">
         <tbody>
             <tr>
-                <th>Id</th>
+                <th>{% trans %}list.id{% endtrans %}</th>
                 <td>{{ todo.id }}</td>
             </tr>
             <tr>
-                <th>Title</th>
+                <th>{% trans %}list.todo.title{% endtrans %}</th>
                 <td>{{ todo.title }}</td>
             </tr>
             <tr>
-                <th>Description</th>
+                <th>{% trans %}list.todo.description{% endtrans %}</th>
                 <td>{{ todo.description }}</td>
             </tr>
             <tr>
-                <th>Date</th>
+                <th>{% trans %}list.todo.date{% endtrans %}</th>
                 <td>{{ todo.date ? todo.date|date('Y-m-d') : '' }}</td>
             </tr>
             <tr>
-                <th>EndDate</th>
+                <th>{% trans %}list.todo.endDate{% endtrans %}</th>
                 <td>{{ todo.endDate ? todo.endDate|date('Y-m-d') : '' }}</td>
             </tr>
         </tbody>
     </table>
 
-    <a href="{{ path('todo_index') }}">back to list</a>
+    <a class="btn btn-outline-primary" href="{{ path('todo_index') }}">
+        {% trans %}form.back{% endtrans %}
+    </a>
 
-    <a href="{{ path('todo_edit', {'id': todo.id}) }}">edit</a>
+    <a class="btn btn-outline-primary" href="{{ path('todo_edit', {'id': todo.id}) }}">
+        {% trans %}list.edit{% endtrans %}
+    </a>
 
     {{ include('todo/_delete_form.html.twig') }}
 {% endblock %}

@@ -1,11 +1,13 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New Complaints{% endblock %}
+{% block title %}{% trans %}list.complaints.new.title{% endtrans %}{% endblock %}
 
 {% block body %}
-    <h1>Create new Complaints</h1>
+    <h1>{% trans %}list.complaints.new.create{% endtrans %}</h1>
 
     {{ include('complaints/_form.html.twig') }}
 
-    <a href="{{ path('complaints_index') }}">back to list</a>
+    <a class="btn btn-outline-primary" href="{{ path('complaints_index') }}">
+        {% trans %}form.back{% endtrans %}
+    </a>
 {% endblock %}
