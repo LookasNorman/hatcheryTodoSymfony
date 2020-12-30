@@ -8,3 +8,51 @@ menu:
   logout: Logout
   register: Register
   login: Login
+form:
+  delete: Delete
+  edit: Edit
+  back: back to list
+  title:
+    complaints: complaints
+    machines: machine
+    user: user
+    todo: todo
+    object_address: object address
+list:
+  list: List
+  id: ID
+  actions: actions
+  show: details
+  edit: edit
+  noRecordsFound: no records found
+  createNew: Create new
+  complaints:
+    title: complaints
+    partName: Machine
+    description: Description
+    filingDate: Filing date
+    removalDate: Removal date
+  machines:
+    title: machines
+    name: Name
+    objectAddress: Object address
+  objectAddress:
+    title: object addresses
+    name: Name
+    street: Street
+    streetNumber: Street number/flat number
+    phoneNumber: Phone number
+    email: Email
+  todo:
+    title: todo
+    name: Name
+    description: Description
+    machine: Machine
+    object: Object addrress
+    date: Date
+    endDate: End date
+  user:
+    title: users
+    email: Email
+    firstname: Firstname
+    lastname: Lastname

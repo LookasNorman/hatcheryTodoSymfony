@@ -1,21 +1,24 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Todo index{% endblock %}
+{% block title %}
+    {% trans %}list.list{% endtrans %} {% trans %}list.todo.title{% endtrans %}
+{% endblock %}
 
 {% block body %}
-    <h1>Todo index</h1>
-    <a class="btn btn-outline-primary" href="{{ path('todo_new') }}">Create new</a>
+    <h1>{% trans %}list.list{% endtrans %} {% trans %}list.todo.title{% endtrans %}</h1>
+    <a class="btn btn-outline-primary" href="{{ path('todo_new') }}">
+        {% trans %}list.createNew{% endtrans %}
+    </a>
     <table class="table">
         <thead>
         <tr>
-            <th>Id</th>
-            <th>Title</th>
-            <th>Description</th>
-            <th>Machine</th>
-            <th>Object</th>
-            <th>Date</th>
-            <th>EndDate</th>
-            <th>actions</th>
+            <th>{% trans %}list.id{% endtrans %}</th>
+            <th>{% trans %}list.todo.name{% endtrans %}</th>
+            <th>{% trans %}list.todo.machine{% endtrans %}</th>
+            <th>{% trans %}list.todo.object{% endtrans %}</th>
+            <th>{% trans %}list.todo.date{% endtrans %}</th>
+            <th>{% trans %}list.todo.endDate{% endtrans %}</th>
+            <th>{% trans %}list.actions{% endtrans %}</th>
         </tr>
         </thead>
         <tbody>
@@ -23,7 +26,6 @@
             <tr>
                 <td>{{ todo.id }}</td>
                 <td>{{ todo.title }}</td>
-                <td>{{ todo.description }}</td>
                 <td>
                     {% if todo.machine is empty %}
                         ---
@@ -41,13 +43,17 @@
                 <td>{{ todo.date ? todo.date|date('Y-m-d') : '' }}</td>
                 <td>{{ todo.endDate ? todo.endDate|date('Y-m-d') : '' }}</td>
                 <td>
-                    <a href="{{ path('todo_show', {'id': todo.id}) }}">show</a>
-                    <a href="{{ path('todo_edit', {'id': todo.id}) }}">edit</a>
+                    <a href="{{ path('todo_show', {'id': todo.id}) }}">
+                        {% trans %}list.show{% endtrans %}
+                    </a>
+                    <a href="{{ path('todo_edit', {'id': todo.id}) }}">
+                        {% trans %}list.edit{% endtrans %}
+                    </a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="6">no records found</td>
+                <td colspan="6">{% trans %}list.noRecordsFound{% endtrans %}</td>
             </tr>
         {% endfor %}
         </tbody>

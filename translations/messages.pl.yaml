@@ -8,3 +8,51 @@ menu:
   logout: Wyloguj
   register: Dodaj użytkownika
   login: Zaloguj
+form:
+  delete: Usuń
+  edit: Edytuj
+  back: wróć do listy
+  title:
+    complaints: reklamacje
+    machines: urządzenia
+    user: użytkownika
+    todo: zadanie
+    object_address: lokalizację
+list:
+  list: Wykaz
+  id: Lp.
+  actions: czynność
+  show: szczegóły
+  edit: edycja
+  noRecordsFound: nie znaleziono zadań
+  createNew: Utwórz nowe
+  complaints:
+    title: reklamacji
+    partName: Maszyna
+    description: Opis
+    filingDate: Data zgłoszenia
+    removalDate: Data usunięcia
+  machines:
+    title: maszyn
+    name: Nazwa
+    objectAddress: Lokalizacja
+  objectAddress:
+    title: lokalizacji
+    name: Nazwa
+    street: Ulica
+    streetNumber: Numer domu/mieszkania
+    phoneNumber: Numer telefonu
+    email: Adres email
+  todo:
+    title: zadań
+    name: Nazwa
+    description: Opis
+    machine: Maszyna
+    object: Lokalizacja
+    date: Planowana data
+    endDate: Data zakończenia
+  user:
+    title: użytkowników
+    email: Adres email
+    firstname: Imię
+    lastname: Nazwisko

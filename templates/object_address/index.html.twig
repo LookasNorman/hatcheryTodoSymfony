@@ -1,20 +1,22 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}ObjectAddress index{% endblock %}
+{% block title %}
+    {% trans %}list.list{% endtrans %} {% trans %}list.objectAddress.title{% endtrans %}
+{% endblock %}
 
 {% block body %}
-    <h1>ObjectAddress index</h1>
-    <a class="btn btn-outline-primary" href="{{ path('object_address_new') }}">Create new</a>
+    <h1>{% trans %}list.list{% endtrans %} {% trans %}list.objectAddress.title{% endtrans %}</h1>
+    <a class="btn btn-outline-primary" href="{{ path('object_address_new') }}">
+        {% trans %}list.createNew{% endtrans %}
+    </a>
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Street</th>
-                <th>StreetNumber</th>
-                <th>PhoneNumber</th>
-                <th>Email</th>
-                <th>actions</th>
+                <th>{% trans %}list.id{% endtrans %}</th>
+                <th>{% trans %}list.objectAddress.name{% endtrans %}</th>
+                <th>{% trans %}list.objectAddress.phoneNumber{% endtrans %}</th>
+                <th>{% trans %}list.objectAddress.email{% endtrans %}</th>
+                <th>{% trans %}list.actions{% endtrans %}</th>
             </tr>
         </thead>
         <tbody>
@@ -22,18 +24,20 @@
             <tr>
                 <td>{{ object_address.id }}</td>
                 <td>{{ object_address.name }}</td>
-                <td>{{ object_address.street }}</td>
-                <td>{{ object_address.streetNumber }}</td>
                 <td>{{ object_address.phoneNumber }}</td>
                 <td>{{ object_address.email }}</td>
                 <td>
-                    <a href="{{ path('object_address_show', {'id': object_address.id}) }}">show</a>
-                    <a href="{{ path('object_address_edit', {'id': object_address.id}) }}">edit</a>
+                    <a href="{{ path('object_address_show', {'id': object_address.id}) }}">
+                        {% trans %}list.show{% endtrans %}
+                    </a>
+                    <a href="{{ path('object_address_edit', {'id': object_address.id}) }}">
+                        {% trans %}list.edit{% endtrans %}
+                    </a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="7">no records found</td>
+                <td colspan="7">{% trans %}list.noRecordsFound{% endtrans %}</td>
             </tr>
         {% endfor %}
         </tbody>

@@ -1,16 +1,19 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Machines index{% endblock %}
+{% block title %}{% trans %}list.list{% endtrans %} {% trans %}list.machines.title{% endtrans %}{% endblock %}
 
 {% block body %}
-    <h1>Machines index</h1>
-    <a class="btn btn-outline-primary" href="{{ path('machines_new') }}">Create new</a>
+    <h1>{% trans %}list.list{% endtrans %} {% trans %}list.machines.title{% endtrans %}</h1>
+    <a class="btn btn-outline-primary" href="{{ path('machines_new') }}">
+        {% trans %}list.createNew{% endtrans %}
+    </a>
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>actions</th>
+                <th>{% trans %}list.id{% endtrans %}</th>
+                <th>{% trans %}list.machines.name{% endtrans %}</th>
+                <th>{% trans %}list.machines.objectAddress{% endtrans %}</th>
+                <th>{% trans %}list.actions{% endtrans %}</th>
             </tr>
         </thead>
         <tbody>
@@ -18,14 +21,19 @@
             <tr>
                 <td>{{ machine.id }}</td>
                 <td>{{ machine.name }}</td>
+                <td>{{ machine.objectAddress.name }}</td>
                 <td>
-                    <a href="{{ path('machines_show', {'id': machine.id}) }}">show</a>
-                    <a href="{{ path('machines_edit', {'id': machine.id}) }}">edit</a>
+                    <a href="{{ path('machines_show', {'id': machine.id}) }}">
+                        {% trans %}list.show{% endtrans %}
+                    </a>
+                    <a href="{{ path('machines_edit', {'id': machine.id}) }}">
+                        {% trans %}list.edit{% endtrans %}
+                    </a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="3">no records found</td>
+                <td colspan="3">{% trans %}list.noRecordsFound{% endtrans %}</td>
             </tr>
         {% endfor %}
         </tbody>
