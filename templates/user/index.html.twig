@@ -6,9 +6,6 @@
 
 {% block body %}
     <h1>{% trans %}list.list{% endtrans %} {% trans %}list.user.title{% endtrans %}</h1>
-    <a class="btn btn-outline-primary" href="{{ path('user_new') }}">
-        {% trans %}list.createNew{% endtrans %}
-    </a>
     <table class="table">
         <thead>
             <tr>
@@ -29,9 +26,6 @@
                 <td>
                     <a href="{{ path('user_show', {'id': user.id}) }}">
                         {% trans %}list.show{% endtrans %}
-                    </a>
-                    <a href="{{ path('user_edit', {'id': user.id}) }}">
-                        {% trans %}list.edit{% endtrans %}
                     </a>
                 </td>
             </tr>

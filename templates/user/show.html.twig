@@ -30,9 +30,6 @@
         {% trans %}form.back{% endtrans %}
     </a>
 
-    <a class="btn btn-outline-primary" href="{{ path('user_edit', {'id': user.id}) }}">
-        {% trans %}list.edit{% endtrans %}
-    </a>
 
     {{ include('user/_delete_form.html.twig') }}
 {% endblock %}

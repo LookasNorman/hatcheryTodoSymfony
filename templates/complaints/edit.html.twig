@@ -5,7 +5,7 @@
 {% block body %}
     <h1>{% trans %}form.edit{% endtrans %} {% trans %}form.title.complaints{% endtrans %}</h1>
 
-    {{ include('complaints/_form.html.twig', {'button_label': 'Update'}) }}
+    {{ include('complaints/_form.html.twig', {'button_label': 'edit'}) }}
 
     <a class="btn btn-outline-primary" href="{{ path('complaints_index') }}">
         {% trans %}form.back{% endtrans %}

@@ -3,7 +3,9 @@ site:
   description: Aplikacja pomagająca zarządzać zadaniami zespołu utrzymania ruchu, zgłaszanymi reklamacjami do dostawców zewnętrznych oraz zakupami części.
 menu:
   home: Strona główna
-  users: Użytkownicy
+  users:
+    title: Użytkownicy
+    list: Wykaz użytkowników
   todos: Do zrobienia
   objects: Lokalizacje
   machinery: Maszyny
@@ -12,10 +14,14 @@ menu:
   logout: Wyloguj
   register: Dodaj użytkownika
   login: Zaloguj
+  todo_type: Typy zadań
+  machines_groups: Grupy maszyn
+  halls: Hale
 form:
   delete: Usuń
   edit: Edytuj
   back: wróć do listy
+  save: Zapisz
   title:
     complaints: reklamacje
     machines: urządzenia
@@ -23,6 +29,7 @@ form:
     todo: zadanie
     object_address: lokalizację
     orders: zamówienie
+    todo_types: typ zadania
 list:
   list: Wykaz
   id: Lp.
@@ -99,3 +106,12 @@ list:
       create: Dodaj zamówienie
     show:
       title: Szczegóły zamówienia
+  todo_type:
+    title: typów zadań
+    name: Nazwa
+    description: Opis
+    new:
+      title: Nowy typ zadań
+      create: Dodaj typ zadań
+    show:
+      title: Opis typu zadań

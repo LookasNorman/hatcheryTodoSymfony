@@ -12,11 +12,6 @@
                         {% trans %}menu.home{% endtrans %}
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ path('user_index') }}">
-                        {% trans %}menu.users{% endtrans %}
-                    </a>
-                </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                        data-bs-toggle="dropdown" aria-expanded="false">
@@ -46,15 +41,43 @@
                         {% trans %}menu.orders{% endtrans %}
                     </a>
                 </li>
-
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('todo_type_index') }}">
+                        {% trans %}menu.todo_type{% endtrans %}
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('machines_groups_index') }}">
+                        {% trans %}menu.machines_groups{% endtrans %}
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('halls_index') }}">
+                        {% trans %}menu.halls{% endtrans %}
+                    </a>
+                </li>
                 {% if app.user %}
                     <li><a class="nav-link" href="{{ path('app_logout') }}">
                             {% trans %}menu.logout{% endtrans %}
-                        </a></li>
-                    <li>
-                        <a class="nav-link" href="{{ path('registration') }}">
-                            {% trans %}menu.register{% endtrans %}
                         </a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                           data-bs-toggle="dropdown" aria-expanded="false">
+                            {% trans %}menu.users.title{% endtrans %}
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li>
+                                <a class="dropdown-item" href="{{ path('registration') }}">
+                                    {% trans %}menu.register{% endtrans %}
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="{{ path('user_index') }}">
+                                    {% trans %}menu.users.list{% endtrans %}
+                                </a>
+                            </li>
+                        </ul>
                     </li>
                 {% else %}
                     <li><a class="nav-link" href="{{ path('app_login') }}">
