@@ -75,6 +75,14 @@ class TodoType extends AbstractType
                     'class' => 'form-select'
                 ]
             ])
+            ->add('type', EntityType::class, [
+                'placeholder' => 'Choose an todo type',
+                'class' => \App\Entity\TodoType::class,
+                'choice_label' => 'name',
+                'attr' => [
+                    'class' => 'form-select'
+                ]
+            ])
         ;
     }
 

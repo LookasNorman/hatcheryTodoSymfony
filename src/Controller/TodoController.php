@@ -80,7 +80,7 @@ class TodoController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->flush();
-            if (!empty($todo->getRepeatTime())) {
+            if (!empty($todo->getRepeatTime()) and !empty($todo->getEndDate())) {
                 $days = $todo->getRepeatTime();
                 $date = $todo->getEndDate();
                 $date->add(new \DateInterval('P'.$days.'D'));

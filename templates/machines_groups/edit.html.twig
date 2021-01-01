@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit MachinesGroups{% endblock %}
+
+{% block body %}
+    <h1>Edit MachinesGroups</h1>
+
+    {{ include('machines_groups/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('machines_groups_index') }}">back to list</a>
+
+    {{ include('machines_groups/_delete_form.html.twig') }}
+{% endblock %}

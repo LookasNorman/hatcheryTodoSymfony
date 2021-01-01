@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New MachinesGroups{% endblock %}
+
+{% block body %}
+    <h1>Create new MachinesGroups</h1>
+
+    {{ include('machines_groups/_form.html.twig') }}
+
+    <a href="{{ path('machines_groups_index') }}">back to list</a>
+{% endblock %}

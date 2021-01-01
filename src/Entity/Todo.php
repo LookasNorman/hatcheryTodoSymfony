@@ -68,6 +68,11 @@ class Todo
      */
     private $repeatTime;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=TodoType::class, inversedBy="todos")
+     */
+    private $type;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -165,6 +170,18 @@ class Todo
     public function setRepeatTime(?int $repeatTime): self
     {
         $this->repeatTime = $repeatTime;
+
+        return $this;
+    }
+
+    public function getType(): ?TodoType
+    {
+        return $this->type;
+    }
+
+    public function setType(?TodoType $type): self
+    {
+        $this->type = $type;
 
         return $this;
     }

@@ -61,11 +61,17 @@ class ObjectAddress
      */
     private $orders;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Halls::class, mappedBy="objectAddress")
+     */
+    private $halls;
+
     public function __construct()
     {
         $this->todos = new ArrayCollection();
         $this->machines = new ArrayCollection();
         $this->orders = new ArrayCollection();
+        $this->halls = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -217,6 +223,36 @@ class ObjectAddress
             // set the owning side to null (unless already changed)
             if ($order->getObjectAddress() === $this) {
                 $order->setObjectAddress(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Halls[]
+     */
+    public function getHalls(): Collection
+    {
+        return $this->halls;
+    }
+
+    public function addHall(Halls $hall): self
+    {
+        if (!$this->halls->contains($hall)) {
+            $this->halls[] = $hall;
+            $hall->setObjectAddress($this);
+        }
+
+        return $this;
+    }
+
+    public function removeHall(Halls $hall): self
+    {
+        if ($this->halls->removeElement($hall)) {
+            // set the owning side to null (unless already changed)
+            if ($hall->getObjectAddress() === $this) {
+                $hall->setObjectAddress(null);
             }
         }
 

@@ -41,6 +41,21 @@ class Machines
      */
     private $complaints;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Halls::class, inversedBy="machines")
+     */
+    private $hall;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=MachinesGroups::class, inversedBy="machines")
+     */
+    private $groups;
+
+    /**
+     * @ORM\Column(type="string", length=20, nullable=true)
+     */
+    private $serialNumber;
+
     public function __construct()
     {
         $this->todos = new ArrayCollection();
@@ -132,6 +147,42 @@ class Machines
                 $complaint->setMachine(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getHall(): ?Halls
+    {
+        return $this->hall;
+    }
+
+    public function setHall(?Halls $hall): self
+    {
+        $this->hall = $hall;
+
+        return $this;
+    }
+
+    public function getGroups(): ?MachinesGroups
+    {
+        return $this->groups;
+    }
+
+    public function setGroups(?MachinesGroups $groups): self
+    {
+        $this->groups = $groups;
+
+        return $this;
+    }
+
+    public function getSerialNumber(): ?string
+    {
+        return $this->serialNumber;
+    }
+
+    public function setSerialNumber(?string $serialNumber): self
+    {
+        $this->serialNumber = $serialNumber;
 
         return $this;
     }
