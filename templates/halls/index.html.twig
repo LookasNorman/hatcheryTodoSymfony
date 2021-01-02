@@ -1,17 +1,23 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Halls index{% endblock %}
+{% block title %}
+    {% trans %}list.list{% endtrans %} {% trans %}list.halls.title{% endtrans %}
+{% endblock %}
 
 {% block body %}
-    <h1>Halls index</h1>
-
+    <h1>
+        {% trans %}list.list{% endtrans %} {% trans %}list.halls.title{% endtrans %}
+    </h1>
+    <a class="btn btn-outline-primary" href="{{ path('halls_new') }}">
+        {% trans %}list.createNew{% endtrans %}
+    </a>
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Description</th>
-                <th>actions</th>
+                <th>{% trans %}list.id{% endtrans %}</th>
+                <th>{% trans %}list.halls.name{% endtrans %}</th>
+                <th>{% trans %}list.halls.description{% endtrans %}</th>
+                <th>{% trans %}list.actions{% endtrans %}</th>
             </tr>
         </thead>
         <tbody>
@@ -21,17 +27,20 @@
                 <td>{{ hall.name }}</td>
                 <td>{{ hall.description }}</td>
                 <td>
-                    <a href="{{ path('halls_show', {'id': hall.id}) }}">show</a>
-                    <a href="{{ path('halls_edit', {'id': hall.id}) }}">edit</a>
+                    <a href="{{ path('halls_show', {'id': hall.id}) }}">
+                        {% trans %}list.show{% endtrans %}
+                    </a>
+                    <a href="{{ path('halls_edit', {'id': hall.id}) }}">
+                        {% trans %}list.edit{% endtrans %}
+                    </a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="4">no records found</td>
+                <td colspan="4">{% trans %}list.noRecordsFound{% endtrans %}</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('halls_new') }}">Create new</a>
 {% endblock %}

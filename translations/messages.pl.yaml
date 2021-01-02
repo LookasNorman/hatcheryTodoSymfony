@@ -30,6 +30,8 @@ form:
     object_address: lokalizację
     orders: zamówienie
     todo_types: typ zadania
+    machines_groups: grupy maszyn
+    halls: hal
 list:
   list: Wykaz
   id: Lp.
@@ -115,3 +117,21 @@ list:
       create: Dodaj typ zadań
     show:
       title: Opis typu zadań
+  machines_groups:
+    title: grup maszyn
+    name: Nazwa
+    description: Opis
+    new:
+      title: Nowa grupa maszyn
+      create: Dodaj grupę maszyn
+    show:
+      title: Opis grup maszyn
+  halls:
+    title: hal
+    name: Nazwa
+    description: Opis
+    new:
+      title: Nowa hala
+      create: Dodaj halę
+    show:
+      title: Szczegóły hali

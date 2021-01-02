@@ -1,11 +1,15 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New MachinesGroups{% endblock %}
+{% block title %}{% trans %}list.machines_groups.new.title{% endtrans %}{% endblock %}
 
 {% block body %}
-    <h1>Create new MachinesGroups</h1>
+    <h1>
+        {% trans %}list.machines_groups.new.create{% endtrans %}
+    </h1>
 
     {{ include('machines_groups/_form.html.twig') }}
 
-    <a href="{{ path('machines_groups_index') }}">back to list</a>
+    <a class="btn btn-outline-primary" href="{{ path('machines_groups_index') }}">
+        {% trans %}form.back{% endtrans %}
+    </a>
 {% endblock %}

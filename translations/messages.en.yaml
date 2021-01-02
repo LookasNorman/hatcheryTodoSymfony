@@ -14,6 +14,9 @@ menu:
   logout: Logout
   register: Register
   login: Login
+  todo_type: Todos type
+  machines_groups: Machines groups
+  halls: Halls
 form:
   delete: Delete
   edit: Edit
@@ -26,6 +29,9 @@ form:
     todo: todo
     object_address: object address
     orders: orders
+    todo_types: todo type
+    machines_groups: machine group
+    halls: hall
 list:
   list: List
   id: ID
@@ -102,3 +108,30 @@ list:
       create: Add orders
     show:
       title: Orders details
+  todo_type:
+    title: todos types
+    name: Name
+    description: Description
+    new:
+      title: New todo type
+      create: Add todo type
+    show:
+      title: Todo type details
+  machines_groups:
+    title: machines groups
+    name: Name
+    description: Description
+    new:
+      title: New machines groups
+      create: Add machine group
+    show:
+      title: Machine group details
+  halls:
+    title: hall
+    name: Name
+    description: Description
+    new:
+      title: New hall
+      create: Add hall
+    show:
+      title: Hall details

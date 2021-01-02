@@ -1,18 +1,23 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}MachinesGroups index{% endblock %}
+{% block title %}
+    {% trans %}list.list{% endtrans %} {% trans %}list.machines_groups.title{% endtrans %}
+{% endblock %}
 
 {% block body %}
-    <h1>MachinesGroups index</h1>
-
+    <h1>
+        {% trans %}list.list{% endtrans %} {% trans %}list.machines_groups.title{% endtrans %}
+    </h1>
+    <a class="btn btn-outline-primary" href="{{ path('machines_groups_new') }}">
+        {% trans %}list.createNew{% endtrans %}
+    </a>
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Description</th>
-                <th>SerialNumber</th>
-                <th>actions</th>
+                <th>{% trans %}list.id{% endtrans %}</th>
+                <th>{% trans %}list.machines_groups.name{% endtrans %}</th>
+                <th>{% trans %}list.machines_groups.description{% endtrans %}</th>
+                <th>{% trans %}list.actions{% endtrans %}</th>
             </tr>
         </thead>
         <tbody>
@@ -21,19 +26,21 @@
                 <td>{{ machines_group.id }}</td>
                 <td>{{ machines_group.name }}</td>
                 <td>{{ machines_group.description }}</td>
-                <td>{{ machines_group.serialNumber }}</td>
                 <td>
-                    <a href="{{ path('machines_groups_show', {'id': machines_group.id}) }}">show</a>
-                    <a href="{{ path('machines_groups_edit', {'id': machines_group.id}) }}">edit</a>
+                    <a href="{{ path('machines_groups_show', {'id': machines_group.id}) }}">
+                        {% trans %}list.show{% endtrans %}
+                    </a>
+                    <a href="{{ path('machines_groups_edit', {'id': machines_group.id}) }}">
+                        {% trans %}list.edit{% endtrans %}
+                    </a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="5">no records found</td>
+                <td colspan="5">{% trans %}list.noRecordsFound{% endtrans %}</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('machines_groups_new') }}">Create new</a>
 {% endblock %}

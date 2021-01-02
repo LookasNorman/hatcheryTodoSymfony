@@ -1,13 +1,19 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit Halls{% endblock %}
+{% block title %}
+    {% trans %}form.edit{% endtrans %} {% trans %}form.title.halls{% endtrans %}
+{% endblock %}
 
 {% block body %}
-    <h1>Edit Halls</h1>
+    <h1>
+        {% trans %}form.edit{% endtrans %} {% trans %}form.title.halls{% endtrans %}
+    </h1>
 
     {{ include('halls/_form.html.twig', {'button_label': 'Update'}) }}
 
-    <a href="{{ path('halls_index') }}">back to list</a>
+    <a class="btn btn-outline-primary" href="{{ path('halls_index') }}">
+        {% trans %}form.back{% endtrans %}
+    </a>
 
     {{ include('halls/_delete_form.html.twig') }}
 {% endblock %}
