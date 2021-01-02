@@ -13,11 +13,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 /**
  * @Route(
- *     "/{_locale}/complaints",
- *     locale="pl",
- *     requirements={
- *         "_locale": "en|pl",
- *      }
+ *     "/complaints"
  * )
  * @IsGranted("ROLE_USER")
  */

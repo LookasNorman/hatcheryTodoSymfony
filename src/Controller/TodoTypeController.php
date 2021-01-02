@@ -11,11 +11,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("/{_locale}/todo_type",
- *     locale="pl",
- *     requirements={
- *         "_locale": "en|pl",
- *      }
+ * @Route("/todo_type"
  * )
  */
 class TodoTypeController extends AbstractController

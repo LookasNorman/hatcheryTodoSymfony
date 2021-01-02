@@ -9,11 +9,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class MainPageController extends AbstractController
 {
     /**
-     * @Route("/{_locale}/", name="main_page",
-     *     locale="pl",
-     *     requirements={
-     *         "_locale": "en|pl",
-     *      }
+     * @Route("/", name="main_page"
      * )
      */
     public function index(): Response

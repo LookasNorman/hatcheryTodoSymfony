@@ -12,11 +12,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("/{_locale}/object_address",
- *     locale="pl",
- *     requirements={
- *         "_locale": "en|pl",
- *      }
+ * @Route("/object_address"
  * )
  */
 class ObjectAddressController extends AbstractController

@@ -12,11 +12,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("/{_locale}/machine_groups",
- *     locale="pl",
- *     requirements={
- *         "_locale": "en|pl",
- *      }
+ * @Route("/machine_groups"
  * )
  * @IsGranted("ROLE_USER")
  */
