@@ -7,11 +7,11 @@ import {
     Typography,
 } from '@material-ui/core';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-
+import Moment from 'moment';
 
 const useStyles = makeStyles((theme) => ({
     heading: {
-        fontSize: theme.typography.pxToRem(15),
+        fontSize: theme.typography.pxToRem(12),
         flexBasis: '100%',
         flexShrink: 0,
         display: 'block'
@@ -42,11 +42,11 @@ export const ListBody = ({data}) => {
                     aria-controls="panel1bh-content"
                     id="panel1bh-header"
                 >
-                    <Typography className={classes.heading}>
+                    <Typography variant="subtitle1" className={classes.heading}>
                         {data.title}
                         <br/>
                         <Typography variant="caption">
-                            {data.date}
+                            {Moment(data.date).format('LL')}
                         </Typography>
                     </Typography>
                 </AccordionSummary>

@@ -114,7 +114,7 @@ function PageLayout(props) {
             <main className={classes.content}>
                 <div className={classes.toolbar} />
                 <Switch>
-                    <Route exact path='/'>
+                    <Route exact path='/pl/'>
                         <Dashboard/>
                     </Route>
                 </Switch>

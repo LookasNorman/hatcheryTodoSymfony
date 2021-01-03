@@ -1,7 +1,9 @@
 import React from "react";
-import { makeStyles } from '@material-ui/core/styles'
-import { TodoSummary } from '../components/TodoSummary'
-import { useEffect, useState } from 'react'
+import {makeStyles} from '@material-ui/core/styles'
+import {TodoSummary} from '../components/TodoSummary'
+import {useEffect, useState} from 'react'
+import {ListItem, ListItemText} from "@material-ui/core";
+import PartHeader from "../components/basic/PartHeader";
 
 const useStyles = makeStyles((theme) => ({
     flex: {
@@ -21,8 +23,10 @@ const useStyles = makeStyles((theme) => ({
 export default function Dashboard() {
     const classes = useStyles()
     const [state, setState] = useState([])
+
     var today = new Date(),
         date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+
     useEffect(() => {
         const fetchData = async () => {
             const today = await fetch(
@@ -35,22 +39,23 @@ export default function Dashboard() {
                 `http://lookaskonieczny.com/api/todos.json?date[strictly_after]=${date}&exists[endDate]=false`,
             ).then(res => res.json())
             setState([
-                { title: 'Zaległe', link: '/overdue', data: overdue },
-                { title: 'Dzisiaj', link: '/today', data: today },
-                { title: 'Następny tydzień', link: '/nextWeek', data: nextWeek}
+                {title: 'Zaległe', link: '/overdue', data: overdue},
+                {title: 'Dzisiaj', link: '/today', data: today},
+                {title: 'Następny tydzień', link: '/nextWeek', data: nextWeek}
             ])
         }
         fetchData()
     }, [])
 
     return (
-        <div className='App'>
+        <>
+            <PartHeader text="Zadania"/>
             <header className={`${classes.main} ${classes.flex}`}>
                 {state.map((item, key) => (
-                    <TodoSummary key={key} data={item} />
+                    <TodoSummary key={key} data={item}/>
                 ))}
-
             </header>
-        </div>
+            <PartHeader text="Reklamacje i zamówienia"/>
+        </>
     )
 }
