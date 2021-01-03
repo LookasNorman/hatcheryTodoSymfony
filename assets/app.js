@@ -1,11 +1,10 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import DashboardIcon from '@material-ui/icons/Dashboard';
-import Dashboard from "./js/components/Dashboard";
+import PageLayout from "./js/pages/PageLayout";
 
 ReactDOM.render(
     <React.StrictMode>
-        <Dashboard/>
+        <PageLayout/>
     </React.StrictMode>,
     document.getElementById('root'),
 )
