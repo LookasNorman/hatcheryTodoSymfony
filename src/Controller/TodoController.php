@@ -79,7 +79,7 @@ class TodoController extends AbstractController
             if (!empty($todo->getRepeatTime()) and !empty($todo->getEndDate())) {
                 $days = $todo->getRepeatTime();
                 $date = $todo->getEndDate();
-                $date->add(new \DateInterval('P'.$days.'D'));
+                $date->add(new \DateInterval('P' . $days . 'D'));
                 $newTodo = clone $todo;
                 $newTodo->setDate($date);
                 $newTodo->setEndDate(null);
@@ -121,5 +121,32 @@ class TodoController extends AbstractController
                 'date' => 'ASC'
             ]),
         ]);
+    }
+
+    public function todosOverdue(): Response
+    {
+        $em = $this->getDoctrine();
+        $date = new \DateTime('now');
+        $objectAddressRepository = $em->getRepository(ObjectAddress::class);
+        $todoTypeRepository = $em->getRepository(\App\Entity\TodoType::class);
+        $todoRepository = $em->getRepository(Todo::class);
+
+        $objectsAddresses = $objectAddressRepository->findAll();
+        $todosTypes = $todoTypeRepository->findAll();
+
+        $todosOverdue = [];
+        foreach ($objectsAddresses as $key => $objectAddress) {
+            $todos = [];
+            foreach ($todosTypes as $key2 => $todoType) {
+                $todos [$todoType->getName()] = $todoRepository
+                    ->todosOverdueByTypeObjectAddress($date, $objectAddress, $todoType);
+            }
+            $todosOverdue [$objectAddress->getName()] = $todos;
+        }
+
+        $response = new Response(json_encode($todosOverdue));
+        $response->headers->set('Content-Type', 'application/json');
+
+        return $response;
     }
 }

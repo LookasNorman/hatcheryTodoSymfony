@@ -11,7 +11,13 @@ use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\ExistsFilter;
 
 /**
- * @ApiResource()
+ * @ApiResource(
+ *     collectionOperations={
+ *          "get",
+ *          "post",
+ *          "todos_overdue"
+ *     }
+ * )
  * @ApiFilter(DateFilter::class, properties={"date"})
  * @ApiFilter(SearchFilter::class, properties={"date", "objectAddress"})
  * @ApiFilter(ExistsFilter::class, properties={"endDate"})

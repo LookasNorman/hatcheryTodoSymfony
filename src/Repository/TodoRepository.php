@@ -19,6 +19,23 @@ class TodoRepository extends ServiceEntityRepository
         parent::__construct($registry, Todo::class);
     }
 
+    public function todosOverdueByTypeObjectAddress($date, $objectAddress, $todoType)
+    {
+        return $this->createQueryBuilder('t')
+            ->andWhere('t.date < :date')
+            ->andWhere('t.objectAddress = :objectAddress')
+            ->andWhere('t.type = :type')
+            ->andWhere('t.endDate IS NULL')
+            ->setParameters([
+                'date' => $date,
+                'objectAddress' => $objectAddress,
+                'type' => $todoType
+            ])
+            ->getQuery()
+            ->getArrayResult()
+            ;
+    }
+
     // /**
     //  * @return Todo[] Returns an array of Todo objects
     //  */
