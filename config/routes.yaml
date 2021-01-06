@@ -1,9 +1,5 @@
-#index:
-#    path: /
-#    controller: App\Controller\DefaultController::index
-
 todos_overdue:
-  path: api/todos/overdue/details
+  path: api/todos/overdue/details/{date}
   methods: 'GET'
   defaults:
     _controller: App\Controller\TodoController::todosOverdue
@@ -19,7 +15,7 @@ todos_today:
     _api_collection_operation_name: todos_today
 
 todos_next:
-  path: api/todos/next/details
+  path: api/todos/next/details/{date}
   methods: 'GET'
   defaults:
     _controller: App\Controller\TodoController::todosNext

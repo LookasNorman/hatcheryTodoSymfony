@@ -122,10 +122,10 @@ class TodoController extends AbstractController
         ]);
     }
 
-    public function todosOverdue(): Response
+    public function todosOverdue($date): Response
     {
         $em = $this->getDoctrine();
-        $date = new \DateTime('now');
+        $date = new \DateTime($date);
         $objectAddressRepository = $em->getRepository(ObjectAddress::class);
         $todoTypeRepository = $em->getRepository(\App\Entity\TodoType::class);
         $todoRepository = $em->getRepository(Todo::class);
@@ -176,10 +176,10 @@ class TodoController extends AbstractController
         return $response;
     }
 
-    public function todosNext(): Response
+    public function todosNext($date): Response
     {
         $em = $this->getDoctrine();
-        $date = new \DateTime('now');
+        $date = new \DateTime($date);
         $objectAddressRepository = $em->getRepository(ObjectAddress::class);
         $todoTypeRepository = $em->getRepository(\App\Entity\TodoType::class);
         $todoRepository = $em->getRepository(Todo::class);
