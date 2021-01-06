@@ -125,6 +125,8 @@ class TodoController extends AbstractController
 
     public function todosOverdue(): Response
     {
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_ANONYMOUSLY');
+
         $em = $this->getDoctrine();
         $date = new \DateTime('now');
         $objectAddressRepository = $em->getRepository(ObjectAddress::class);
