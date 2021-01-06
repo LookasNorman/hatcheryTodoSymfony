@@ -148,4 +148,58 @@ class TodoController extends AbstractController
 
         return $response;
     }
+
+    public function todosToday($date): Response
+    {
+        $em = $this->getDoctrine();
+        $date = new \DateTime($date);
+        $objectAddressRepository = $em->getRepository(ObjectAddress::class);
+        $todoTypeRepository = $em->getRepository(\App\Entity\TodoType::class);
+        $todoRepository = $em->getRepository(Todo::class);
+
+        $objectsAddresses = $objectAddressRepository->findAll();
+        $todosTypes = $todoTypeRepository->findAll();
+
+        $todosOverdue = [];
+        foreach ($objectsAddresses as $key => $objectAddress) {
+            $todos = [];
+            foreach ($todosTypes as $key2 => $todoType) {
+                $todos [$todoType->getName()] = $todoRepository
+                    ->todosTodayByTypeObjectAddress($date, $objectAddress, $todoType);
+            }
+            $todosOverdue [$objectAddress->getName()] = $todos;
+        }
+
+        $response = new Response(json_encode($todosOverdue));
+        $response->headers->set('Content-Type', 'application/json');
+
+        return $response;
+    }
+
+    public function todosNext(): Response
+    {
+        $em = $this->getDoctrine();
+        $date = new \DateTime('now');
+        $objectAddressRepository = $em->getRepository(ObjectAddress::class);
+        $todoTypeRepository = $em->getRepository(\App\Entity\TodoType::class);
+        $todoRepository = $em->getRepository(Todo::class);
+
+        $objectsAddresses = $objectAddressRepository->findAll();
+        $todosTypes = $todoTypeRepository->findAll();
+
+        $todosOverdue = [];
+        foreach ($objectsAddresses as $key => $objectAddress) {
+            $todos = [];
+            foreach ($todosTypes as $key2 => $todoType) {
+                $todos [$todoType->getName()] = $todoRepository
+                    ->todosNextByTypeObjectAddress($date, $objectAddress, $todoType);
+            }
+            $todosOverdue [$objectAddress->getName()] = $todos;
+        }
+
+        $response = new Response(json_encode($todosOverdue));
+        $response->headers->set('Content-Type', 'application/json');
+
+        return $response;
+    }
 }
