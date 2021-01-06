@@ -43,6 +43,7 @@ list:
   complaints:
     title: complaints
     partName: Machine
+    supplier: Supplier
     description: Description
     filingDate: Filing date
     removalDate: Removal date

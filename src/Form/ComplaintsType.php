@@ -21,6 +21,11 @@ class ComplaintsType extends AbstractType
                     'class' => 'form-control'
                 ]
             ])
+            ->add('supplier', TextType::class, [
+                'attr' => [
+                    'class' => 'form-control'
+                ]
+            ])
             ->add('description', TextType::class, [
                 'attr' => [
                     'class' => 'form-control'
