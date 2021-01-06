@@ -13,7 +13,7 @@ use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\ExistsFilter;
 /**
  * @ApiResource()
  * @ApiFilter(DateFilter::class, properties={"date"})
- * @ApiFilter(SearchFilter::class, properties={"date"})
+ * @ApiFilter(SearchFilter::class, properties={"date", "objectAddress"})
  * @ApiFilter(ExistsFilter::class, properties={"endDate"})
  * @ORM\Entity(repositoryClass=TodoRepository::class)
  */
