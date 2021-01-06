@@ -15,7 +15,6 @@ use Symfony\Component\Routing\Annotation\Route;
 /**
  * @Route("/todo"
  * )
- * @IsGranted("ROLE_USER")
  */
 class TodoController extends AbstractController
 {
@@ -125,8 +124,6 @@ class TodoController extends AbstractController
 
     public function todosOverdue(): Response
     {
-        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_ANONYMOUSLY');
-
         $em = $this->getDoctrine();
         $date = new \DateTime('now');
         $objectAddressRepository = $em->getRepository(ObjectAddress::class);
