@@ -202,7 +202,8 @@ class TodoController extends AbstractController
 
         return $response;
     }
-    public function todosObject($date)
+
+    public function todosObject($date): Response
     {
         $em = $this->getDoctrine();
         $date = new \DateTime($date);

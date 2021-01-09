@@ -1,5 +1,5 @@
 todos_object:
-  path: api/todos/object/details
+  path: api/todos/object/details/{date}
   method: 'GET'
   defaults:
     _controller: App\Controller\TodoController::todosObject
