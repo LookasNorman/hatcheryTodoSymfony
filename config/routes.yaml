@@ -1,3 +1,11 @@
+todos_object:
+  path: api/todos/object/details
+  method: 'GET'
+  defaults:
+    _controller: App\Controller\TodoController::todosObject
+      _api_resource_class: App\Entity\Todo
+      _api_collection_operation_name: todos_object
+
 todos_overdue:
   path: api/todos/overdue/details/{date}
   methods: 'GET'

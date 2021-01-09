@@ -18,6 +18,7 @@ use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\ExistsFilter;
  *          "todos_overdue",
  *          "todos_today",
  *          "todos_next"
+ *          "todos_object"
  *     }
  * )
  * @ApiFilter(DateFilter::class, properties={"date"})

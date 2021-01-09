@@ -202,4 +202,36 @@ class TodoController extends AbstractController
 
         return $response;
     }
+    public function todosObject($date)
+    {
+        $em = $this->getDoctrine();
+        $date = new \DateTime($date);
+        $objectAddressRepository = $em->getRepository(ObjectAddress::class);
+        $todoTypeRepository = $em->getRepository(\App\Entity\TodoType::class);
+        $todoRepository = $em->getRepository(Todo::class);
+
+        $objectsAddresses = $objectAddressRepository->findAll();
+        $todosTypes = $todoTypeRepository->findAll();
+
+        $todosObject = [];
+
+        foreach ($objectsAddresses as $key => $objectAddress) {
+            $todos = [];
+            foreach ($todosTypes as $key2 => $todoType) {
+                $todos [$todoType->getName()] = $todoRepository
+                    ->findBy([
+                        "objectAddress" => $objectAddress,
+                        "endDate" => NULL
+                    ]);
+            }
+            $todosObject [$objectAddress->getName()] = $todos;
+        }
+
+        $response = new Response(json_encode($todosObject));
+        $response->headers->set('Content-Type', 'application/json');
+
+        return $response;
+
+    }
+
 }
