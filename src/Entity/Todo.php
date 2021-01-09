@@ -17,7 +17,7 @@ use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\ExistsFilter;
  *          "post",
  *          "todos_overdue",
  *          "todos_today",
- *          "todos_next"
+ *          "todos_next",
  *          "todos_object"
  *     }
  * )
