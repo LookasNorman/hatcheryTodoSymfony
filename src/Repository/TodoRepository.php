@@ -70,6 +70,21 @@ class TodoRepository extends ServiceEntityRepository
             ;
     }
 
+    public function todosByObjectAndType($objectAddress, $type)
+    {
+        return $this->createQueryBuilder('t')
+            ->andWhere('t.objectAddress = :objectAddress')
+            ->andWhere('t.type = :type')
+            ->andWhere('t.endDate IS NULL')
+            ->setParameters([
+                'objectAddress' => $objectAddress,
+                'type' => $type
+            ])
+            ->getQuery()
+            ->getArrayResult()
+            ;
+    }
+
     // /**
     //  * @return Todo[] Returns an array of Todo objects
     //  */
