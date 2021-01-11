@@ -15,10 +15,18 @@ use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\ExistsFilter;
  *     collectionOperations={
  *          "get",
  *          "post",
- *          "todos_overdue",
- *          "todos_today",
- *          "todos_next",
- *          "todos_object"
+ *          "todos_overdue"={
+ *              "method"="GET"
+ *          },
+ *          "todos_today"={
+ *              "method"="GET"
+ *          },
+ *          "todos_next"={
+ *              "method"="GET"
+ *          },
+ *          "todos_object"={
+ *              "method"="GET"
+ *          },
  *     }
  * )
  * @ApiFilter(DateFilter::class, properties={"date"})
@@ -111,9 +119,9 @@ class Todo
         return $this;
     }
 
-    public function getDate(): string
+    public function getDate(): ?\DateTimeInterface
     {
-        return $this->date->format('Y-m-d');
+        return $this->date;
     }
 
     public function setDate(\DateTimeInterface $date): self
