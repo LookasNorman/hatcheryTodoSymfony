@@ -31,31 +31,32 @@ export const ListBody = ({data}) => {
     };
 
     return (
-        <>
-            <Accordion
-                className={classes.list}
-                expanded={expanded === 'panel1'}
-                onChange={handleChange('panel1')}
-            >
-                <AccordionSummary
-                    expandIcon={<ExpandMoreIcon/>}
-                    aria-controls="panel1bh-content"
-                    id="panel1bh-header"
-                >
-                    <Typography variant="subtitle1" className={classes.heading}>
-                        {data.title}
-                        <br/>
-                        <Typography variant="caption">
-                            {Moment(data.date).format('LL')}
-                        </Typography>
-                    </Typography>
-                </AccordionSummary>
-                <AccordionDetails>
-                    <Typography>
-                        {data.description}
-                    </Typography>
-                </AccordionDetails>
-            </Accordion>
-        </>
+      <>
+          <Accordion
+            className={classes.list}
+            expanded={expanded === 'panel1'}
+            onChange={handleChange('panel1')}
+          >
+              <AccordionSummary
+                expandIcon={<ExpandMoreIcon/>}
+                aria-controls="panel1bh-content"
+                id="panel1bh-header"
+              >
+                  <Typography variant="subtitle1" className={classes.heading}>
+                      {data.title && data.title}
+                      {data.supplier && data.supplier}
+                      <br/>
+                      <Typography variant="caption">
+                          {Moment(data.date).format('LL')}
+                      </Typography>
+                  </Typography>
+              </AccordionSummary>
+              <AccordionDetails>
+                  <Typography>
+                      {data.description}
+                  </Typography>
+              </AccordionDetails>
+          </Accordion>
+      </>
     );
 }

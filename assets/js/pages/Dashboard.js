@@ -1,61 +1,63 @@
-import React from "react";
-import {makeStyles} from '@material-ui/core/styles'
-import {TodoSummary} from '../components/TodoSummary'
-import {useEffect, useState} from 'react'
-import {ListItem, ListItemText} from "@material-ui/core";
-import PartHeader from "../components/basic/PartHeader";
-
-const useStyles = makeStyles((theme) => ({
-    flex: {
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-    main: {
-        display: 'flex',
-        alignItems: 'stretch',
-        margin: '1vw 0.5vw',
-        justifyContent: 'space-evenly',
-        flexWrap: 'wrap',
-    },
-}))
+import React from 'react'
+import { useEffect, useState } from 'react'
+import { getNextWeekTodos, getOverdueTodos, getTodayTodos } from '../api/Todos'
+import { getComplaints } from '../api/Complaints'
+import { getOrders } from '../api/Orders'
+import DashboardPart from '../components/DashbordPart'
 
 export default function Dashboard() {
-    const classes = useStyles()
-    const [state, setState] = useState([])
+  const [todos, setTodos] = useState([])
+  const [orders, setOrders] = useState( [])
+  const [complaints, setComplaints] = useState([])
 
+  useEffect(() => {
     var today = new Date(),
-        date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+      date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate()
+    const fetchData = async () => {
+      const today = await getTodayTodos(date)
+      const overdue = await getOverdueTodos(date)
+      const nextWeek = await getNextWeekTodos(date)
+      if (!today.error && !overdue.error && !nextWeek.error) {
+        setTodos([
+          { title: 'Zaległe', link: '/overdue', data: overdue.data },
+          { title: 'Dzisiaj', link: '/today', data: today.data },
+          { title: 'Następny tydzień', link: '/nextWeek', data: nextWeek.data },
+        ])
+      }
 
-    useEffect(() => {
-        const fetchData = async () => {
-            const today = await fetch(
-                `http://lookaskonieczny.com/api/todos.json?date=${date}&exists[endDate]=false`,
-            ).then(res => res.json())
-            const overdue = await fetch(
-                `http://lookaskonieczny.com/api/todos.json?date[strictly_before]=${date}&exists[endDate]=false`,
-            ).then(res => res.json())
-            const nextWeek = await fetch(
-                `http://lookaskonieczny.com/api/todos.json?date[strictly_after]=${date}&exists[endDate]=false`,
-            ).then(res => res.json())
-            setState([
-                {title: 'Zaległe', link: '/overdue', data: overdue},
-                {title: 'Dzisiaj', link: '/today', data: today},
-                {title: 'Następny tydzień', link: '/nextWeek', data: nextWeek}
-            ])
-        }
-        fetchData()
-    }, [])
+    }
+    fetchData()
+  }, [])
 
-    return (
-        <>
-            <PartHeader text="Zadania"/>
-            <header className={`${classes.main} ${classes.flex}`}>
-                {state.map((item, key) => (
-                    <TodoSummary key={key} data={item}/>
-                ))}
-            </header>
-            <PartHeader text="Reklamacje i zamówienia"/>
-        </>
-    )
+  useEffect(() => {
+    const fetchData = async () => {
+      const orders = await getOrders()
+      if (!orders.error) {
+        setOrders([
+          { title: 'W realizacji', link: null, data: orders.data },
+        ])
+      }
+    }
+    fetchData()
+  }, [])
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const complaints = await getComplaints()
+      if (!complaints.error) {
+        setComplaints([
+          { title: 'Zgłoszone', link: null, data: complaints.data },
+        ])
+      }
+    }
+    fetchData()
+  }, [])
+
+  return (
+    <>
+      <DashboardPart title="Zadania" data={todos} link="/addTodo"/>
+      <DashboardPart title="Zamówienia" data={orders} link="/addOrder"/>
+      <DashboardPart title="Reklamacje" data={complaints} link="/addComplaint"/>
+    </>
+  )
 }
