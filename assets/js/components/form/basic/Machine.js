@@ -6,6 +6,7 @@ import {CardHeader} from '../../basic/CardHeader'
 import {getObjectsAddresses} from '../../../api/ObjectsAddresses'
 import {getHalls} from '../../../api/Halls'
 import {getMachinesGroups} from '../../../api/MachinesGroups'
+import {postNewMachines} from "../../../api/Machines";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -40,7 +41,9 @@ const useStyles = makeStyles((theme) => ({
 export default function Machine() {
     const classes = useStyles();
     const {handleSubmit, register} = useForm()
-    const onSubmit = data => console.log(data)
+    const onSubmit = async (data) => {
+        const postData = await postNewMachines(JSON.stringify(data))
+    }
     const [objectAddressList, setObjectAddressList] = useState()
     const [hallList, setHallList] = useState()
     const [machinesGroupsList, setMachinesGroupsList] = useState()
