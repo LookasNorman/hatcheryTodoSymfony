@@ -8,3 +8,12 @@ export async function getComplaints() {
   )
     .then(res => res.data['hydra:member']))
 }
+
+export async function postNewComplaints(data) {
+  return await resolve(axios.post(
+      `${API_URL}/complaints`,
+      data,
+      {headers: {'Content-Type': 'application/json', 'accept': 'application/ld+json'}}
+  )
+      .then(res => res.data))
+}
