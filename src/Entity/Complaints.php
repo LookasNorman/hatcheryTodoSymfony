@@ -44,6 +44,11 @@ class Complaints
      */
     private $removalDate;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $supplier;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -105,6 +110,18 @@ class Complaints
     public function setRemovalDate(?\DateTimeInterface $removalDate): self
     {
         $this->removalDate = $removalDate;
+
+        return $this;
+    }
+
+    public function getSupplier(): ?string
+    {
+        return $this->supplier;
+    }
+
+    public function setSupplier(?string $supplier): self
+    {
+        $this->supplier = $supplier;
 
         return $this;
     }

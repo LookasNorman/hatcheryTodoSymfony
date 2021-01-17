@@ -43,6 +43,7 @@ list:
   complaints:
     title: reklamacji
     partName: Maszyna
+    supplier: Dostawca
     description: Opis
     filingDate: Data zgłoszenia
     removalDate: Data usunięcia

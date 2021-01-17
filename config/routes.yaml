@@ -1,3 +1,31 @@
-#index:
-#    path: /
-#    controller: App\Controller\DefaultController::index
+todos_object:
+  path: api/todos/object/details
+  methods: 'GET'
+  defaults:
+    _controller: App\Controller\TodoController::todosObject
+    _api_resource_class: App\Entity\Todo
+    _api_collection_operation_name: todos_object
+
+todos_overdue:
+  path: api/todos/overdue/details/{date}
+  methods: 'GET'
+  defaults:
+    _controller: App\Controller\TodoController::todosOverdue
+    _api_resource_class: App\Entity\Todo
+    _api_collection_operation_name: todos_overdue
+
+todos_today:
+  path: api/todos/today/details/{date}
+  methods: 'GET'
+  defaults:
+    _controller: App\Controller\TodoController::todosToday
+    _api_resource_class: App\Entity\Todo
+    _api_collection_operation_name: todos_today
+
+todos_next:
+  path: api/todos/next/details/{date}
+  methods: 'GET'
+  defaults:
+    _controller: App\Controller\TodoController::todosNext
+    _api_resource_class: App\Entity\Todo
+    _api_collection_operation_name: todos_next

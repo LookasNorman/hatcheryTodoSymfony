@@ -15,7 +15,6 @@ use Symfony\Component\Routing\Annotation\Route;
 /**
  * @Route("/todo"
  * )
- * @IsGranted("ROLE_USER")
  */
 class TodoController extends AbstractController
 {
@@ -79,7 +78,7 @@ class TodoController extends AbstractController
             if (!empty($todo->getRepeatTime()) and !empty($todo->getEndDate())) {
                 $days = $todo->getRepeatTime();
                 $date = $todo->getEndDate();
-                $date->add(new \DateInterval('P'.$days.'D'));
+                $date->add(new \DateInterval('P' . $days . 'D'));
                 $newTodo = clone $todo;
                 $newTodo->setDate($date);
                 $newTodo->setEndDate(null);
@@ -122,4 +121,114 @@ class TodoController extends AbstractController
             ]),
         ]);
     }
+
+    public function todosOverdue($date): Response
+    {
+        $em = $this->getDoctrine();
+        $date = new \DateTime($date);
+        $objectAddressRepository = $em->getRepository(ObjectAddress::class);
+        $todoTypeRepository = $em->getRepository(\App\Entity\TodoType::class);
+        $todoRepository = $em->getRepository(Todo::class);
+
+        $objectsAddresses = $objectAddressRepository->findAll();
+        $todosTypes = $todoTypeRepository->findAll();
+
+        $todosOverdue = [];
+        foreach ($objectsAddresses as $key => $objectAddress) {
+            $todos = [];
+            foreach ($todosTypes as $key2 => $todoType) {
+                $todos [$todoType->getName()] = $todoRepository
+                    ->todosOverdueByTypeObjectAddress($date, $objectAddress, $todoType);
+            }
+            $todosOverdue [$objectAddress->getName()] = $todos;
+        }
+
+        $response = new Response(json_encode($todosOverdue));
+        $response->headers->set('Content-Type', 'application/json');
+
+        return $response;
+    }
+
+    public function todosToday($date): Response
+    {
+        $em = $this->getDoctrine();
+        $date = new \DateTime($date);
+        $objectAddressRepository = $em->getRepository(ObjectAddress::class);
+        $todoTypeRepository = $em->getRepository(\App\Entity\TodoType::class);
+        $todoRepository = $em->getRepository(Todo::class);
+
+        $objectsAddresses = $objectAddressRepository->findAll();
+        $todosTypes = $todoTypeRepository->findAll();
+
+        $todosOverdue = [];
+        foreach ($objectsAddresses as $key => $objectAddress) {
+            $todos = [];
+            foreach ($todosTypes as $key2 => $todoType) {
+                $todos [$todoType->getName()] = $todoRepository
+                    ->todosTodayByTypeObjectAddress($date, $objectAddress, $todoType);
+            }
+            $todosOverdue [$objectAddress->getName()] = $todos;
+        }
+
+        $response = new Response(json_encode($todosOverdue));
+        $response->headers->set('Content-Type', 'application/json');
+
+        return $response;
+    }
+
+    public function todosNext($date): Response
+    {
+        $em = $this->getDoctrine();
+        $date = new \DateTime($date);
+        $objectAddressRepository = $em->getRepository(ObjectAddress::class);
+        $todoTypeRepository = $em->getRepository(\App\Entity\TodoType::class);
+        $todoRepository = $em->getRepository(Todo::class);
+
+        $objectsAddresses = $objectAddressRepository->findAll();
+        $todosTypes = $todoTypeRepository->findAll();
+
+        $todosOverdue = [];
+        foreach ($objectsAddresses as $key => $objectAddress) {
+            $todos = [];
+            foreach ($todosTypes as $key2 => $todoType) {
+                $todos [$todoType->getName()] = $todoRepository
+                    ->todosNextByTypeObjectAddress($date, $objectAddress, $todoType);
+            }
+            $todosOverdue [$objectAddress->getName()] = $todos;
+        }
+
+        $response = new Response(json_encode($todosOverdue));
+        $response->headers->set('Content-Type', 'application/json');
+
+        return $response;
+    }
+
+    public function todosObject(): Response
+    {
+        $em = $this->getDoctrine();
+        $date = new \DateTime('2021-01-06');
+        $objectAddressRepository = $em->getRepository(ObjectAddress::class);
+        $todoTypeRepository = $em->getRepository(\App\Entity\TodoType::class);
+        $todoRepository = $em->getRepository(Todo::class);
+
+        $objectsAddresses = $objectAddressRepository->findAll();
+        $todosTypes = $todoTypeRepository->findAll();
+
+        $todosObject = [];
+        foreach ($objectsAddresses as $key => $objectAddress) {
+            $todos = [];
+            foreach ($todosTypes as $key2 => $todoType) {
+                $todos [$todoType->getName()] = $todoRepository
+                    ->todosByObjectAndType($objectAddress, $todoType);
+            }
+            $todosObject [$objectAddress->getName()] = $todos;
+        }
+
+        $response = new Response(json_encode($todosObject));
+        $response->headers->set('Content-Type', 'application/json');
+
+        return $response;
+
+    }
+
 }

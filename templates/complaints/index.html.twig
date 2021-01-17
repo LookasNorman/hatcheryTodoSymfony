@@ -12,6 +12,7 @@
         <tr>
             <th>{% trans %}list.id{% endtrans %}</th>
             <th>{% trans %}list.complaints.partName{% endtrans %}</th>
+            <th>{% trans %}list.complaints.supplier{% endtrans %}</th>
             <th>{% trans %}list.complaints.filingDate{% endtrans %}</th>
             <th>{% trans %}list.complaints.removalDate{% endtrans %}</th>
             <th>{% trans %}list.actions{% endtrans %}</th>
@@ -22,6 +23,7 @@
             <tr>
                 <td>{{ complaint.id }}</td>
                 <td>{{ complaint.partName }}</td>
+                <td>{{ complaint.supplier }}</td>
                 <td>{{ complaint.filingDate ? complaint.filingDate|date('Y-m-d') : '' }}</td>
                 <td>{{ complaint.removalDate ? complaint.removalDate|date('Y-m-d') : '' }}</td>
                 <td>

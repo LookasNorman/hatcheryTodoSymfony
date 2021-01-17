@@ -11,9 +11,26 @@ use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\ExistsFilter;
 
 /**
- * @ApiResource()
+ * @ApiResource(
+ *     collectionOperations={
+ *          "get",
+ *          "post",
+ *          "todos_overdue"={
+ *              "method"="GET"
+ *          },
+ *          "todos_today"={
+ *              "method"="GET"
+ *          },
+ *          "todos_next"={
+ *              "method"="GET"
+ *          },
+ *          "todos_object"={
+ *              "method"="GET"
+ *          },
+ *     }
+ * )
  * @ApiFilter(DateFilter::class, properties={"date"})
- * @ApiFilter(SearchFilter::class, properties={"date"})
+ * @ApiFilter(SearchFilter::class, properties={"date", "objectAddress"})
  * @ApiFilter(ExistsFilter::class, properties={"endDate"})
  * @ORM\Entity(repositoryClass=TodoRepository::class)
  */
