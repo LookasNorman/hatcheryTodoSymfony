@@ -9,7 +9,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ApiResource()
+ * @ApiResource(normalizationContext={"jsonld_embed_context"=true})
  * @ORM\Entity(repositoryClass=TodoTypeRepository::class)
  */
 class TodoType

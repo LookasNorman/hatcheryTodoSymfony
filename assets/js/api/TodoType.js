@@ -4,7 +4,7 @@ import { API_URL } from './BasicUrl'
 
 export async function getTodoType() {
   return await resolve(axios.get(
-    `${API_URL}/todo_types.json`
+    `${API_URL}/todo_types`
   )
-    .then(res => res.data))
+    .then(res => res.data['hydra:member']))
 }

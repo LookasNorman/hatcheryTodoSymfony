@@ -14,6 +14,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
  * @ORM\Entity(repositoryClass=UserRepository::class)
  * @ORM\Table(name="`user`")
  * @ApiResource(
+ *     normalizationContext={"jsonld_embed_context"=true},
  *     itemOperations={
  *              "get" = {
  *                  "normalization_context"={"groups"={"read"}
@@ -31,6 +32,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
 class User implements UserInterface
 {
     /**
+     * @Groups({"read"})
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")

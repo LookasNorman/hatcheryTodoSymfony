@@ -4,9 +4,9 @@ import { API_URL, HEADERS } from './BasicUrl'
 
 export async function getObjectsAddresses() {
   return await resolve(axios.get(
-    `${API_URL}/object_addresses.json`
+    `${API_URL}/object_addresses`
   )
-    .then(res => res.data))
+    .then(res => res.data['hydra:member']))
 }
 
 export async function newObjectAddress(data) {
