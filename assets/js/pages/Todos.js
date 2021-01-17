@@ -21,7 +21,7 @@ export default function Todos() {
 
   return (
       todos ? Object.entries(todos).map(([key, item]) => (
-        <TodosPart title={key} data={item} />
+        <TodosPart key={key} title={key} data={item} />
       )) : <CircularProgress/>
   )
 }

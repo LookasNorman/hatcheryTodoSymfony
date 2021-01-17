@@ -10,7 +10,6 @@ export default function AddOrder() {
     "data": <ObjectAddress/>}
   ]
 
-
   return (
     <AddForm form={form} forms={forms}/>
   )

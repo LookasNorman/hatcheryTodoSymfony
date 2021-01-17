@@ -7,7 +7,6 @@ import MachineGroups from '../components/form/basic/MachineGroups'
 import Hall from '../components/form/basic/Hall'
 import AddForm from '../components/form/basic/AddForm'
 
-
 export default function AddTodo() {
   const form = <Todo/>
   const forms = [
@@ -17,7 +16,6 @@ export default function AddTodo() {
     {"title": "Dodaj halę / kurnik", "data": <Hall/>},
     {"title": "Dodaj grupę maszyn", "data": <MachineGroups/>}
   ]
-
 
   return (
     <AddForm form={form} forms={forms}/>

@@ -37,7 +37,6 @@ export default function AddForm({ form, forms }) {
         <Paper className={`${classes.card}`}>
           <FormPart forms={forms}/>
         </Paper>
-
     </header>
   )
 }

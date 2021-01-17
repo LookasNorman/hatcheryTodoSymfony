@@ -4,16 +4,16 @@ import {API_URL} from './BasicUrl'
 
 export async function getTodayTodos(date) {
     return await resolve(axios.get(
-        `${API_URL}/todos.json?date=${date}&exists[endDate]=false`
+        `${API_URL}/todos?date=${date}&exists[endDate]=false`
     )
-        .then(res => res.data))
+        .then(res => res.data['hydra:member']))
 }
 
 export async function getObjectTodos(objectAddress) {
     return await resolve(axios.get(
-        `${API_URL}/todos.json?exist[endDate]=false&objectAddress=${objectAddress}`
+        `${API_URL}/todos?exist[endDate]=false&objectAddress=${objectAddress}`
     )
-        .then(res => res.data))
+        .then(res => res.data['hydra:member']))
 }
 
 export async function getTodosByObjectAndType() {
@@ -25,16 +25,16 @@ export async function getTodosByObjectAndType() {
 
 export async function getOverdueTodos(date) {
     return await resolve(axios.get(
-        `${API_URL}/todos.json?date[strictly_before]=${date}&exists[endDate]=false`
+        `${API_URL}/todos?date[strictly_before]=${date}&exists[endDate]=false`
     )
-        .then(res => res.data))
+        .then(res => res.data['hydra:member']))
 }
 
 export async function getNextWeekTodos(date) {
     return await resolve(axios.get(
-        `${API_URL}/todos.json?date[strictly_after]=${date}&exists[endDate]=false`
+        `${API_URL}/todos?date[strictly_after]=${date}&exists[endDate]=false`
     )
-        .then(res => res.data))
+        .then(res => res.data['hydra:member']))
 }
 
 export async function getTodayTodosTypesObjects(date) {
@@ -65,7 +65,6 @@ export async function getNextTodosTypesObjects(date) {
 }
 
 export async function postNewTodo(data) {
-    console.log(data)
     return await resolve(axios.post(
         `${API_URL}/todos`,
         data,

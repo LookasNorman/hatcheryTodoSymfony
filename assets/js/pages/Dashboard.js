@@ -24,7 +24,6 @@ export default function Dashboard() {
           { title: 'Następny tydzień', link: '/nextWeek', data: nextWeek.data },
         ])
       }
-
     }
     fetchData()
   }, [])
