@@ -98,20 +98,24 @@ export default function Todo() {
                     <CardHeader data='Dodaj zadanie'/>
                 </div>
                 <form className={classes.root} onSubmit={handleSubmit(onSubmit)}>
+                    <InputLabel id='demo-simple-select-label'>Nazwa</InputLabel>
                     <input
                         name="title"
                         ref={register}
                     />
+                    <InputLabel id='demo-simple-select-label'>Opis</InputLabel>
                     <input
                         name='description'
                         ref={register()}
                     />
+                    <InputLabel id='demo-simple-select-label'>Data wykonania</InputLabel>
                     <input
                         name='date'
                         id='standard-basic'
                         ref={register()}
                         type='date'
                     />
+                    <InputLabel id='demo-simple-select-label'>Czas powtórzeń (dni)</InputLabel>
                     <input
                         name='repeatTime'
                         id='standard-basic'
@@ -120,7 +124,6 @@ export default function Todo() {
                         })}
                         type='number'
                     />
-                    <>
                         <InputLabel id='demo-simple-select-label'>Lokalizacja</InputLabel>
                         <select
                             name='objectAddress'
@@ -130,8 +133,6 @@ export default function Todo() {
                                 <option key={item['@id']} value={item['@id']}>{item.name}</option>
                             ))}
                         </select>
-                    </>
-                    <>
                         <InputLabel id='demo-simple-select-label'>Maszyna</InputLabel>
                         <select
                             name='machine'
@@ -141,8 +142,6 @@ export default function Todo() {
                                 <option key={item['@id']} value={item['@id']}>{item.name}</option>
                             ))}
                         </select>
-                    </>
-                    <>
                         <InputLabel id='demo-simple-select-label'>Typ zadania</InputLabel>
                         <select
                             name='todoType'
@@ -152,8 +151,6 @@ export default function Todo() {
                                 <option key={item['@id']} value={item['@id']}>{item.name}</option>
                             ))}
                         </select>
-                    </>
-                    <>
                         <InputLabel id='demo-simple-select-label'>Właściciel</InputLabel>
                         <select
                             name='owner'
@@ -163,7 +160,6 @@ export default function Todo() {
                                 <option key={item['@id']} value={item['@id']}>{item.firstname}</option>
                             ))}
                         </select>
-                    </>
                     <Button variant='contained' color='primary' type='submit'>
                         Send
                     </Button>
