@@ -11,9 +11,9 @@ export async function getObjectsAddresses() {
 
 export async function newObjectAddress(data) {
   return await resolve(axios.post(
-    `${API_URL}/object_addresses`,
-    { data },
-    {headers: HEADERS}
+      `${API_URL}/object_addresses`,
+      data,
+      {headers: {'Content-Type': 'application/json', 'accept': 'application/ld+json'}}
   )
-    .then(res => res.data))
+      .then(res => res.data))
 }
