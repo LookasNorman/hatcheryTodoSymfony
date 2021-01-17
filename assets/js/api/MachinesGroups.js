@@ -8,3 +8,12 @@ export async function getMachinesGroups() {
   )
     .then(res => res.data['hydra:member']))
 }
+
+export async function postNewMachinesGroups(data) {
+  return await resolve(axios.post(
+      `${API_URL}/machines_groups`,
+      data,
+      {headers: {'Content-Type': 'application/json', 'accept': 'application/ld+json'}}
+  )
+      .then(res => res.data))
+}

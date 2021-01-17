@@ -1,8 +1,9 @@
 import React from 'react';
-import { useForm, Controller } from 'react-hook-form';
+import { useForm} from 'react-hook-form';
 import { makeStyles } from '@material-ui/core/styles';
-import { TextField, Button, CardContent, Card } from '@material-ui/core'
+import {Button, CardContent, Card, InputLabel} from '@material-ui/core'
 import { CardHeader } from '../../basic/CardHeader'
+import {postNewMachinesGroups} from "../../../api/MachinesGroups";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -36,9 +37,10 @@ const useStyles = makeStyles((theme) => ({
 
 export default function MachineGroups() {
   const classes = useStyles();
-  const { handleSubmit, control } = useForm()
-  const onSubmit = data => console.log(data)
-
+  const { handleSubmit, register } = useForm()
+  const onSubmit = async (data) => {
+    const postData = await postNewMachinesGroups(JSON.stringify(data))
+  }
   return (
     <Card className={classes.card}>
       <CardContent className={classes.content}>
@@ -46,45 +48,16 @@ export default function MachineGroups() {
           <CardHeader data="Dodaj grupę maszyn" />
         </div>
         <form className={classes.root} noValidate autoComplete="off" onSubmit={handleSubmit(onSubmit)}>
-          <Controller
-            name="name"
-            control={control}
-            defaultValue=""
-            render={({ onChange, value }) => <TextField
-              id="standard-basic"
-              label="Nazwa"
-              onChange={onChange} value={value}
-              InputLabelProps={{
-                shrink: true,
-              }}
-            />}
-          />
-          <Controller
-            name="description"
-            control={control}
-            defaultValue=""
-            render={({ onChange, value }) => <TextField
-              id="standard-basic"
-              label="Opis"
-              onChange={onChange} value={value}
-              InputLabelProps={{
-                shrink: true,
-              }}
-            />}
-          />
-          <Controller
-            name="serialNumber"
-            control={control}
-            defaultValue=""
-            render={({ onChange, value }) => <TextField
-              id="standard-basic"
-              label="Numer seryjny"
-              onChange={onChange} value={value}
-              InputLabelProps={{
-                shrink: true,
-              }}
-            />}
-          />
+          <InputLabel id='demo-simple-select-label'>Nazwa grupy</InputLabel>
+          <input
+                name="name"
+                ref={register}
+            />
+          <InputLabel id='demo-simple-select-label'>Opis</InputLabel>
+          <input
+                name="description"
+                ref={register}
+            />
           <Button variant="contained" color="primary" type="submit">
             Send
           </Button>
