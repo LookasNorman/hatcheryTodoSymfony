@@ -8,3 +8,12 @@ export async function getHalls() {
   )
     .then(res => res.data['hydra:member']))
 }
+
+export async function postNewHall(data) {
+  return await resolve(axios.post(
+      `${API_URL}/halls`,
+      data,
+      {headers: {'Content-Type': 'application/json', 'accept': 'application/ld+json'}}
+  )
+      .then(res => res.data))
+}
