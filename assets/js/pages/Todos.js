@@ -6,13 +6,14 @@ import {CircularProgress} from '@material-ui/core'
 
 export default function Todos() {
   const [todos, setTodos] = useState([])
-
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     const fetchData = async () => {
       const todosList = await getTodosByObjectAndType()
       if (!todosList.error) {
         setTodos(todosList.data)
+        setLoading(false)
       }
 
     }
@@ -20,8 +21,8 @@ export default function Todos() {
   }, [])
 
   return (
-      todos ? Object.entries(todos).map(([key, item]) => (
-        <TodosPart key={key} title={key} data={item} />
-      )) : <CircularProgress/>
+      loading ? <CircularProgress/> : Object.entries(todos).map(([key, item]) => (
+      <TodosPart key={key} title={key} data={item} />
+  ))
   )
 }
