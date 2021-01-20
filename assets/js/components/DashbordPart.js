@@ -36,11 +36,11 @@ export default function DashboardPart({ title, data, link }) {
         {visibility ? <Visibility onClick={toggleVisibility} /> : <VisibilityOff onClick={toggleVisibility} />}
       </ListItem>
       {visibility &&
-      data.length > 0 ? <header className={`${classes.main} ${classes.flex}`}>
+      (data.length > 0 ? <header className={`${classes.main} ${classes.flex}`}>
         {data.map((item, key) => (
           <EntitySummary key={key} data={item} header='Lista' />
         ))}
-      </header> : <CircularProgress/>
+      </header> : <CircularProgress/>)
       }
     </>
   )
