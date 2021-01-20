@@ -6,7 +6,7 @@ import {
     AccordionSummary,
     Typography,
 } from '@material-ui/core';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import {ExpandMore, Edit} from '@material-ui/icons';
 import Moment from 'moment';
 
 const useStyles = makeStyles((theme) => ({
@@ -38,7 +38,7 @@ export const ListBody = ({data}) => {
             onChange={handleChange('panel1')}
           >
               <AccordionSummary
-                expandIcon={<ExpandMoreIcon/>}
+                expandIcon={<ExpandMore/>}
                 aria-controls="panel1bh-content"
                 id="panel1bh-header"
               >
@@ -55,7 +55,9 @@ export const ListBody = ({data}) => {
                   <Typography>
                       {data.description}
                   </Typography>
+                  <Edit/>
               </AccordionDetails>
+
           </Accordion>
       </>
     );
