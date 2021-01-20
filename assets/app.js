@@ -3,8 +3,6 @@ import ReactDOM from 'react-dom'
 import PageLayout from "./js/pages/PageLayout";
 
 ReactDOM.render(
-    <React.StrictMode>
-        <PageLayout/>
-    </React.StrictMode>,
+    <PageLayout/>,
     document.getElementById('root'),
 )
