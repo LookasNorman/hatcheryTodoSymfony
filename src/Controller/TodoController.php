@@ -122,85 +122,41 @@ class TodoController extends AbstractController
         ]);
     }
 
-    public function todosOverdue($date): Response
+    public function todosOverdue(): Response
     {
         $em = $this->getDoctrine();
-        $date = new \DateTime($date);
-        $objectAddressRepository = $em->getRepository(ObjectAddress::class);
-        $todoTypeRepository = $em->getRepository(\App\Entity\TodoType::class);
+        $date = new \DateTime('now');
         $todoRepository = $em->getRepository(Todo::class);
+        $todos = $todoRepository->todosOverdue($date);
 
-        $objectsAddresses = $objectAddressRepository->findAll();
-        $todosTypes = $todoTypeRepository->findAll();
-
-        $todosOverdue = [];
-        foreach ($objectsAddresses as $key => $objectAddress) {
-            $todos = [];
-            foreach ($todosTypes as $key2 => $todoType) {
-                $todos [$todoType->getName()] = $todoRepository
-                    ->todosOverdueByTypeObjectAddress($date, $objectAddress, $todoType);
-            }
-            $todosOverdue [$objectAddress->getName()] = $todos;
-        }
-
-        $response = new Response(json_encode($todosOverdue));
-        $response->headers->set('Content-Type', 'application/json');
-
-        return $response;
+        return $this->render('todo/todosCard.html.twig', [
+            'todos' => $todos
+        ]);
     }
 
-    public function todosToday($date): Response
+    public function todosToday(): Response
     {
         $em = $this->getDoctrine();
-        $date = new \DateTime($date);
-        $objectAddressRepository = $em->getRepository(ObjectAddress::class);
-        $todoTypeRepository = $em->getRepository(\App\Entity\TodoType::class);
+        $date = new \DateTime('now');
         $todoRepository = $em->getRepository(Todo::class);
+        $todos = $todoRepository->findBy(['date'=> $date]);
 
-        $objectsAddresses = $objectAddressRepository->findAll();
-        $todosTypes = $todoTypeRepository->findAll();
-
-        $todosOverdue = [];
-        foreach ($objectsAddresses as $key => $objectAddress) {
-            $todos = [];
-            foreach ($todosTypes as $key2 => $todoType) {
-                $todos [$todoType->getName()] = $todoRepository
-                    ->todosTodayByTypeObjectAddress($date, $objectAddress, $todoType);
-            }
-            $todosOverdue [$objectAddress->getName()] = $todos;
-        }
-
-        $response = new Response(json_encode($todosOverdue));
-        $response->headers->set('Content-Type', 'application/json');
-
-        return $response;
+        return $this->render('todo/todosCard.html.twig', [
+            'todos' => $todos
+        ]);
     }
 
-    public function todosNext($date): Response
+    public function todosNext(): Response
     {
         $em = $this->getDoctrine();
-        $date = new \DateTime($date);
-        $objectAddressRepository = $em->getRepository(ObjectAddress::class);
-        $todoTypeRepository = $em->getRepository(\App\Entity\TodoType::class);
+        $date = new \DateTime('now');
+        $nextDate = $date->add(new \DateInterval('P7D'));
         $todoRepository = $em->getRepository(Todo::class);
+        $todos = $todoRepository->todosNext($date, $nextDate);
 
-        $objectsAddresses = $objectAddressRepository->findAll();
-        $todosTypes = $todoTypeRepository->findAll();
-
-        $todosOverdue = [];
-        foreach ($objectsAddresses as $key => $objectAddress) {
-            $todos = [];
-            foreach ($todosTypes as $key2 => $todoType) {
-                $todos [$todoType->getName()] = $todoRepository
-                    ->todosNextByTypeObjectAddress($date, $objectAddress, $todoType);
-            }
-            $todosOverdue [$objectAddress->getName()] = $todos;
-        }
-
-        $response = new Response(json_encode($todosOverdue));
-        $response->headers->set('Content-Type', 'application/json');
-
-        return $response;
+        return $this->render('todo/todosCard.html.twig', [
+            'todos' => $todos
+        ]);
     }
 
     public function todosObject(): Response

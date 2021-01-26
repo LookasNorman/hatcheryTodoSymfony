@@ -1,6 +1,11 @@
 site:
   title: System zarządzania utrzymania ruchu
   description: Aplikacja pomagająca zarządzać zadaniami zespołu utrzymania ruchu, zgłaszanymi reklamacjami do dostawców zewnętrznych oraz zakupami części.
+  todo:
+    title: Lista zadań
+    overdue: Zaległe
+    today: Dzisiejsze
+    nextWeek: 7 dni
 menu:
   home: Strona główna
   users:

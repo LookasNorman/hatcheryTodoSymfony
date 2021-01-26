@@ -19,71 +19,33 @@ class TodoRepository extends ServiceEntityRepository
         parent::__construct($registry, Todo::class);
     }
 
-    public function todosOverdueByTypeObjectAddress($date, $objectAddress, $todoType)
+    public function todosOverdue($date)
     {
         return $this->createQueryBuilder('t')
             ->andWhere('t.date < :date')
-            ->andWhere('t.objectAddress = :objectAddress')
-            ->andWhere('t.type = :type')
             ->andWhere('t.endDate IS NULL')
-            ->setParameters([
-                'date' => $date,
-                'objectAddress' => $objectAddress,
-                'type' => $todoType
-            ])
+            ->setParameter(
+                'date', $date
+            )
+            ->orderBy('t.date', 'ASC')
             ->getQuery()
-            ->getArrayResult()
-            ;
+            ->execute();
     }
 
-    public function todosTodayByTypeObjectAddress($date, $objectAddress, $todoType)
-    {
-        return $this->createQueryBuilder('t')
-            ->andWhere('t.date = :date')
-            ->andWhere('t.objectAddress = :objectAddress')
-            ->andWhere('t.type = :type')
-            ->andWhere('t.endDate IS NULL')
-            ->setParameters([
-                'date' => $date,
-                'objectAddress' => $objectAddress,
-                'type' => $todoType
-            ])
-            ->getQuery()
-            ->getArrayResult()
-            ;
-    }
-
-    public function todosNextByTypeObjectAddress($date, $objectAddress, $todoType)
+    public function todosNext($date, $nextDate)
     {
         return $this->createQueryBuilder('t')
             ->andWhere('t.date > :date')
-            ->andWhere('t.objectAddress = :objectAddress')
-            ->andWhere('t.type = :type')
+            ->andWhere('t.date <= :nextDate')
             ->andWhere('t.endDate IS NULL')
             ->setParameters([
                 'date' => $date,
-                'objectAddress' => $objectAddress,
-                'type' => $todoType
+                'nextDate' => $nextDate
             ])
             ->getQuery()
-            ->getArrayResult()
-            ;
+            ->getArrayResult();
     }
 
-    public function todosByObjectAndType($objectAddress, $type)
-    {
-        return $this->createQueryBuilder('t')
-            ->andWhere('t.objectAddress = :objectAddress')
-            ->andWhere('t.type = :type')
-            ->andWhere('t.endDate IS NULL')
-            ->setParameters([
-                'objectAddress' => $objectAddress,
-                'type' => $type
-            ])
-            ->getQuery()
-            ->getArrayResult()
-            ;
-    }
 
     // /**
     //  * @return Todo[] Returns an array of Todo objects

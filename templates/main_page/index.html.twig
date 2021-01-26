@@ -3,15 +3,40 @@
 {% block title %}{% trans %}site.title{% endtrans %}{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+    <style>
+        .example-wrapper {
+            margin: 1em auto;
+            max-width: 1200px;
+            font: 18px/1.5 sans-serif;
+        }
 
-<div class="example-wrapper">
-    <h1>{% trans %}site.title{% endtrans %}</h1>
+        .example-wrapper code {
+            background: #F5F5F5;
+            padding: 2px 6px;
+        }
+    </style>
 
-    {% trans %}site.description{% endtrans %}
-
-</div>
+    <div class="example-wrapper">
+        {% if app.user %}
+            <p class="h2">{% trans %}site.todo.title{% endtrans %}</p>
+            <hr/>
+            <div class="card-group">
+                <div class="card bg-danger">
+                    <div class="card-body">
+                        <h5 class="card-title">{% trans %}site.todo.overdue{% endtrans %}</h5>
+                        {{ render(controller('App\\Controller\\TodoController::todosOverdue')) }}
+                    </div>
+                </div>
+                <div class="card bg-primary">
+                    <div class="card-body">
+                        <h5 class="card-title">{% trans %}site.todo.today{% endtrans %}</h5>
+                        {{ render(controller('App\\Controller\\TodoController::todosToday')) }}
+                    </div>
+                </div>
+            </div>
+        {% else %}
+            <h1>{% trans %}site.title{% endtrans %}</h1>
+            {% trans %}site.description{% endtrans %}
+        {% endif %}
+    </div>
 {% endblock %}

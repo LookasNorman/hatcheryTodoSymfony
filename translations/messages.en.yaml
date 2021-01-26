@@ -1,6 +1,8 @@
 site:
   title: Maintenance management system
   description: An application that helps to manage the maintenance team's tasks, complaints to external suppliers and parts purchases.
+  todo:
+    title: Todo list
 menu:
   home: Home page
   users:
