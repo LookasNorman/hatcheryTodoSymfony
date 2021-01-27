@@ -33,6 +33,9 @@
                     <a href="{{ path('object_address_edit', {'id': object_address.id}) }}">
                         {% trans %}list.edit{% endtrans %}
                     </a>
+                    <a href="{{ path('halls_object_index', {'id': object_address.id}) }}">
+                        {% trans %}list.plan{% endtrans %}
+                    </a>
                 </td>
             </tr>
         {% else %}

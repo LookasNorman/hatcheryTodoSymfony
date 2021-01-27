@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Halls;
+use App\Entity\ObjectAddress;
 use App\Form\HallsType;
 use App\Repository\HallsRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
@@ -93,5 +94,15 @@ class HallsController extends AbstractController
         }
 
         return $this->redirectToRoute('halls_index');
+    }
+
+    /**
+     * @Route("/object/{id}", name="halls_object_index", methods={"GET"})
+     */
+    public function indexObject(HallsRepository $hallsRepository, ObjectAddress $address): Response
+    {
+        return $this->render('object_address/plan.html.twig', [
+            'halls' => $hallsRepository->findBy(['objectAddress' => $address]),
+        ]);
     }
 }

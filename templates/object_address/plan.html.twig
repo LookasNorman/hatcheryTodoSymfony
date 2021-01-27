@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {% trans %}list.list{% endtrans %} {% trans %}list.halls.title{% endtrans %}
+{% endblock %}
+
+{% block body %}
+    {% include 'plans/wylegarnia.html.twig' %}
+    <h1>
+        {% trans %}list.list{% endtrans %} {% trans %}list.halls.title{% endtrans %}
+    </h1>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>{% trans %}list.id{% endtrans %}</th>
+            <th>{% trans %}list.halls.name{% endtrans %}</th>
+            <th>{% trans %}list.halls.description{% endtrans %}</th>
+            <th>{% trans %}list.actions{% endtrans %}</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for hall in halls %}
+            <tr>
+                <td>{{ hall.id }}</td>
+                <td>{{ hall.name }}</td>
+                <td>{{ hall.description }}</td>
+                <td>
+                    <a href="{{ path('halls_show', {'id': hall.id}) }}">
+                        {% trans %}list.show{% endtrans %}
+                    </a>
+                    <a href="{{ path('halls_edit', {'id': hall.id}) }}">
+                        {% trans %}list.edit{% endtrans %}
+                    </a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">{% trans %}list.noRecordsFound{% endtrans %}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}
