@@ -9,7 +9,9 @@
             max-width: 1200px;
             font: 18px/1.5 sans-serif;
         }
-
+        .card {
+            max-width: 350px;
+        }
         .example-wrapper code {
             background: #F5F5F5;
             padding: 2px 6px;
@@ -20,7 +22,7 @@
         {% if app.user %}
             <p class="h2">{% trans %}site.todo.title{% endtrans %}</p>
             <hr/>
-            <div class="card-group">
+            <div class="card-deck">
                 <div class="card bg-danger">
                     <div class="card-body">
                         <h5 class="card-title">{% trans %}site.todo.overdue{% endtrans %}</h5>
@@ -33,7 +35,14 @@
                         {{ render(controller('App\\Controller\\TodoController::todosToday')) }}
                     </div>
                 </div>
+                <div class="card bg-success">
+                    <div class="card-body">
+                        <h5 class="card-title">{% trans %}site.todo.nextWeek{% endtrans %}</h5>
+                        {{ render(controller('App\\Controller\\TodoController::todosNextWeek')) }}
+                    </div>
+                </div>
             </div>
+            <hr/>
         {% else %}
             <h1>{% trans %}site.title{% endtrans %}</h1>
             {% trans %}site.description{% endtrans %}

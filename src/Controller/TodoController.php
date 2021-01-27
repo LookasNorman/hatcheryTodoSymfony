@@ -146,7 +146,7 @@ class TodoController extends AbstractController
         ]);
     }
 
-    public function todosNext(): Response
+    public function todosNextWeek(): Response
     {
         $em = $this->getDoctrine();
         $date = new \DateTime('now');

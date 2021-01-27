@@ -2,19 +2,13 @@
     <div class="example-wrapper">
         {% if app.user %}
         {% if todos %}
-        <div class="accordion" id="accordionExample">
             {% for todo in todos %}
-                <div class="accordion-item bg-light">
-                    <h2 class="accordion-header" id="heading_{{ todo.id }}">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse_{{ todo.id }}" aria-expanded="false" aria-controls="collapse_{{ todo.id }}">
-                            {{todo.title}} | {{ todo.objectAddress.name}} | {{ todo.date | date('Y-m-d')}}
-                        </button>
-                    </h2>
-                    <div id="collapse_{{ todo.id }}" class="accordion-collapse collapse" aria-labelledby="heading_{{ todo.id }}" data-bs-parent="#accordionExample">
-                        <div class="accordion-body">
-                            {{ todo.description }}
-                        </div>
-                    </div>
+                <div class="bg-light">
+                    <h6 class="text-center"><a href="{{ path('todo_show', {'id': todo.id}) }}">{{todo.title}}</a></h6>
+                    <p>
+                        <span class="badge badge-secondary">{{ todo.objectAddress.name}}</span>
+                        <span class="badge badge-secondary">{{ todo.date | date('Y-m-d')}}</span>
+                    </p>
                 </div>
             {% endfor %}
             {% else %}
@@ -22,5 +16,4 @@
             {% endif %}
             {% endif %}
         </div>
-    </div>
 {% endblock %}
