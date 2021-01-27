@@ -101,7 +101,7 @@ class HallsController extends AbstractController
      */
     public function indexObject(HallsRepository $hallsRepository, ObjectAddress $address): Response
     {
-        return $this->render('object_address/plan.html.twig', [
+        return $this->render('halls/index.html.twig', [
             'halls' => $hallsRepository->findBy(['objectAddress' => $address]),
         ]);
     }

@@ -27,14 +27,14 @@
                 <td>{{ object_address.phoneNumber }}</td>
                 <td>{{ object_address.email }}</td>
                 <td>
-                    <a href="{{ path('object_address_show', {'id': object_address.id}) }}">
+                    <a class="badge" href="{{ path('object_address_show', {'id': object_address.id}) }}">
                         {% trans %}list.show{% endtrans %}
                     </a>
-                    <a href="{{ path('object_address_edit', {'id': object_address.id}) }}">
+                    <a class="badge" href="{{ path('object_address_edit', {'id': object_address.id}) }}">
                         {% trans %}list.edit{% endtrans %}
                     </a>
-                    <a href="{{ path('halls_object_index', {'id': object_address.id}) }}">
-                        {% trans %}list.plan{% endtrans %}
+                    <a class="badge" href="{{ path('halls_object_index', {'id': object_address.id}) }}">
+                        {% trans %}list.halls.show.list{% endtrans %}
                     </a>
                 </td>
             </tr>

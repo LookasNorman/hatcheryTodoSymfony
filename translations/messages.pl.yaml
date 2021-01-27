@@ -141,4 +141,5 @@ list:
       title: Nowa hala
       create: Dodaj halę
     show:
+      list: Wykaz hal
       title: Szczegóły hali
