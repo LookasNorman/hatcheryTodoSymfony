@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Halls;
 use App\Entity\Machines;
 use App\Form\MachinesType;
 use App\Repository\MachinesRepository;
@@ -94,5 +95,15 @@ class MachinesController extends AbstractController
         }
 
         return $this->redirectToRoute('machines_index');
+    }
+
+    /**
+     * @Route("/halls/{id}", name="machines_hall_index", methods={"GET"})
+     */
+    public function indexHalls(MachinesRepository $machinesRepository, Halls $halls): Response
+    {
+        return $this->render('machines/index.html.twig', [
+            'machines' => $machinesRepository->findBy(['hall' => $halls]),
+        ]);
     }
 }

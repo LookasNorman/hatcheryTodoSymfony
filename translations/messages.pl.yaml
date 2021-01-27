@@ -65,6 +65,7 @@ list:
       title: Nowa maszyna
       create: Dodaj maszynę
     show:
+      list: Lista maszyn
       title: Detale maszyny
   objectAddress:
     title: lokalizacji
