@@ -12,51 +12,51 @@
                         {% trans %}menu.home{% endtrans %}
                     </a>
                 </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                       data-bs-toggle="dropdown" aria-expanded="false">
-                        {% trans %}menu.todos{% endtrans %}
-                    </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        {{ render(controller('App\\Controller\\ObjectAddressController::menuObject')) }}
-                    </ul>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ path('object_address_index') }}">
-                        {% trans %}menu.objects{% endtrans %}
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ path('machines_index') }}">
-                        {% trans %}menu.machinery{% endtrans %}
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ path('complaints_index') }}">
-                        {% trans %}menu.complaints{% endtrans %}
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ path('orders_index') }}">
-                        {% trans %}menu.orders{% endtrans %}
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ path('todo_type_index') }}">
-                        {% trans %}menu.todo_type{% endtrans %}
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ path('machines_groups_index') }}">
-                        {% trans %}menu.machines_groups{% endtrans %}
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ path('halls_index') }}">
-                        {% trans %}menu.halls{% endtrans %}
-                    </a>
-                </li>
                 {% if app.user %}
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            {% trans %}menu.todos{% endtrans %}
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            {{ render(controller('App\\Controller\\ObjectAddressController::menuObject')) }}
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('object_address_index') }}">
+                            {% trans %}menu.objects{% endtrans %}
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('machines_index') }}">
+                            {% trans %}menu.machinery{% endtrans %}
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('complaints_index') }}">
+                            {% trans %}menu.complaints{% endtrans %}
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('orders_index') }}">
+                            {% trans %}menu.orders{% endtrans %}
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('todo_type_index') }}">
+                            {% trans %}menu.todo_type{% endtrans %}
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('machines_groups_index') }}">
+                            {% trans %}menu.machines_groups{% endtrans %}
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('halls_index') }}">
+                            {% trans %}menu.halls{% endtrans %}
+                        </a>
+                    </li>
                     <li><a class="nav-link" href="{{ path('app_logout') }}">
                             {% trans %}menu.logout{% endtrans %}
                         </a>
