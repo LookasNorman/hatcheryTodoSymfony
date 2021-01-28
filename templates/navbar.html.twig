@@ -62,22 +62,18 @@
                         </a>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                           data-bs-toggle="dropdown" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             {% trans %}menu.users.title{% endtrans %}
                         </a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li>
-                                <a class="dropdown-item" href="{{ path('registration') }}">
-                                    {% trans %}menu.register{% endtrans %}
-                                </a>
-                            </li>
-                            <li>
-                                <a class="dropdown-item" href="{{ path('user_index') }}">
-                                    {% trans %}menu.users.list{% endtrans %}
-                                </a>
-                            </li>
-                        </ul>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="{{ path('registration') }}">
+                                {% trans %}menu.register{% endtrans %}
+                            </a>
+                            <a class="dropdown-item" href="{{ path('user_index') }}">
+                                {% trans %}menu.users.list{% endtrans %}
+                            </a>
+                        </div>
                     </li>
                 {% else %}
                     <li><a class="nav-link" href="{{ path('app_login') }}">
