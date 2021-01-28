@@ -58,9 +58,31 @@ list:
     show:
       title: Szczegóły reklamacji
   machines:
+    card:
+      title: Karta ruchu
+      number: PROCEDURA PO-NM-6.3/2
+      version: 'Wersja: 01'
+      site: Strona
+      date: Data
+      person: 'Wydał: Cezary Komorowski'
+      form:
+        title: FORMULARZ
+        number: 'Numer: F-PO-NM-2'
+      list:
+        title: Wykonane przeglądy i remonty urządzenia
+        lp: Lp.
+        date:
+          planned: Planowana data
+          end: Data wykonania
+        description: 'Charakter remontu lub przeglądu: bieżący, średni, planowy, ponadplanowy (awaryjny), wymienić zakres robót'
+        person: Potwierdzenie wykonania (osoba wykonująca przegląd)
+        notes: Uwagi
     title: maszyn
     name: Nazwa
     objectAddress: Lokalizacja
+    hall: Hala / Kurnik
+    group: Grupa maszyn
+    s/n: Numer seryjny
     new:
       title: Nowa maszyna
       create: Dodaj maszynę

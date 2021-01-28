@@ -1,0 +1,88 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{% trans %}list.machines.show.title{% endtrans %}{% endblock %}
+
+{% block body %}
+    <h1>{% trans %}list.machines.show.title{% endtrans %}</h1>
+
+    <table class="table">
+        <tbody>
+        <tr>
+            <th>{% trans %}list.machines.name{% endtrans %}</th>
+            <td>{{ machine.name }}</td>
+        </tr>
+        <tr>
+            <th>{% trans %}list.machines.s/n{% endtrans %}</th>
+            <td>{{ machine.serialNumber }}</td>
+        </tr>
+        <tr>
+            <th>{% trans %}list.machines.objectAddress{% endtrans %}</th>
+            <td>{{ machine.objectAddress.name }}</td>
+        </tr>
+        <tr>
+            <th>{% trans %}list.machines.hall{% endtrans %}</th>
+            <td>{{ machine.hall.name }}</td>
+        </tr>
+        <tr>
+            <th>{% trans %}list.machines.group{% endtrans %}</th>
+            <td>{{ machine.groups.name }}</td>
+        </tr>
+        </tbody>
+    </table>
+    <br/>
+    <table class="table-bordered table-responsive">
+        <tr>
+            <td rowspan="3" style="width: 15%"></td>
+            <td class="align-middle text-center"
+                style="width: 65%">{% trans %}list.machines.card.number{% endtrans %}</td>
+            <td class="align-middle text-center"
+                style="width: 10%">{% trans %}list.machines.card.version{% endtrans %}</td>
+            <td class="align-middle text-center"
+                style="width: 10%">{% trans %}list.machines.card.site{% endtrans %}</td>
+        </tr>
+        <tr>
+            <td class="align-middle text-center">{% trans %}list.machines.card.form.title{% endtrans %}</td>
+            <td class="align-middle text-center"
+                colspan="2">{% trans %}list.machines.card.form.number{% endtrans %}</td>
+        </tr>
+        <tr>
+            <td class="align-middle text-center">{% trans %}list.machines.card.title{% endtrans %}</td>
+            <td class="align-middle text-center">{% trans %}list.machines.card.date{% endtrans %}</td>
+            <td class="align-middle text-center">{% trans %}list.machines.card.person{% endtrans %}</td>
+        </tr>
+    </table>
+    <h3 class="badge">{% trans %}list.machines.card.list.title{% endtrans %}</h3>
+    <table class="table table-borderless table-responsive table-hover">
+        <thead class="thead-dark">
+        <tr>
+            <th class="align-middle text-center"
+                style="width: 3%">{% trans %}list.machines.card.list.lp{% endtrans %}</th>
+            <th class="align-middle text-center"
+                style="width: 6%">{% trans %}list.machines.card.list.date.planned{% endtrans %}</th>
+            <th class="align-middle text-center"
+                style="width: 6%">{% trans %}list.machines.card.list.date.end{% endtrans %}</th>
+            <th class="align-middle text-center"
+                style="width: 60%">{% trans %}list.machines.card.list.description{% endtrans %}</th>
+            <th class="align-middle text-center"
+                style="width: 10%">{% trans %}list.machines.card.list.person{% endtrans %}</th>
+            <th class="align-middle text-center"
+                style="width: 15%">{% trans %}list.machines.card.list.notes{% endtrans %}</th>
+        </tr>
+        </thead>
+        {% for todo in machine.todos %}
+            <tr>
+                <td class="align-middle text-center">{{ todo.id }}</td>
+                <td class="align-middle text-center">{{ todo.date ? todo.date|date('Y-m-d') : '' }}</td>
+                <td class="align-middle text-center">{{ todo.endDate ? todo.endDate|date('Y-m-d') : '' }}</td>
+                <td class="align-middle text-left">{{ todo.description }} <span
+                            class="badge badge-primary">{{ todo.type.name }}</span></td>
+                <td class="align-middle text-center">{{ todo.owner.firstname }} {{ todo.owner.lastname }}</td>
+                <td class="align-middle text-center">
+                    <a href="{{ path('todo_show', {'id': todo.id}) }}">
+                        {% trans %}list.show{% endtrans %}
+                    </a>
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock %}

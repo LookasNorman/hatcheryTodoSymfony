@@ -6,6 +6,7 @@ use App\Entity\Halls;
 use App\Entity\Machines;
 use App\Form\MachinesType;
 use App\Repository\MachinesRepository;
+use App\Repository\TodoRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -104,6 +105,19 @@ class MachinesController extends AbstractController
     {
         return $this->render('machines/index.html.twig', [
             'machines' => $machinesRepository->findBy(['hall' => $halls]),
+        ]);
+    }
+
+    /**
+     * @Route("/card/{id}", name="machines_card", methods={"GET"})
+     */
+    public function card(TodoRepository $todoRepository, Machines $machine): Response
+    {
+        $todos = $todoRepository->findBy(['machine' => $machine]);
+
+        return $this->render('machines/card.html.twig', [
+            'machine' => $machine,
+            'todos' => $todos
         ]);
     }
 }

@@ -25,11 +25,14 @@
                 <td>{{ machine.name }}</td>
                 <td>{{ machine.objectAddress.name }}</td>
                 <td>
-                    <a href="{{ path('machines_show', {'id': machine.id}) }}">
+                    <a class="badge" href="{{ path('machines_show', {'id': machine.id}) }}">
                         {% trans %}list.show{% endtrans %}
                     </a>
-                    <a href="{{ path('machines_edit', {'id': machine.id}) }}">
+                    <a class="badge" href="{{ path('machines_edit', {'id': machine.id}) }}">
                         {% trans %}list.edit{% endtrans %}
+                    </a>
+                    <a class="badge" href="{{ path('machines_card', {'id': machine.id}) }}">
+                        {% trans %}list.machines.card.title{% endtrans %}
                     </a>
                 </td>
             </tr>
