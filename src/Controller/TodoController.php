@@ -127,7 +127,7 @@ class TodoController extends AbstractController
         $em = $this->getDoctrine();
         $date = new \DateTime('now');
         $todoRepository = $em->getRepository(Todo::class);
-        $todos = $todoRepository->todosOverdue($date);
+        $todos = $todoRepository->todosOverdue($date->format('Y-m-d'));
 
         return $this->render('todo/todosCard.html.twig', [
             'todos' => $todos
@@ -139,7 +139,7 @@ class TodoController extends AbstractController
         $em = $this->getDoctrine();
         $date = new \DateTime('now');
         $todoRepository = $em->getRepository(Todo::class);
-        $todos = $todoRepository->findBy(['date'=> $date]);
+        $todos = $todoRepository->findBy(['date' => $date, 'endDate' => null]);
 
         return $this->render('todo/todosCard.html.twig', [
             'todos' => $todos
@@ -152,7 +152,8 @@ class TodoController extends AbstractController
         $date = new \DateTime('now');
         $nextDate = $date->add(new \DateInterval('P7D'));
         $todoRepository = $em->getRepository(Todo::class);
-        $todos = $todoRepository->todosNext($date, $nextDate);
+        $todos = $todoRepository
+            ->todosNext($date->format('Y-m-d'), $nextDate->format('Y-m-d'));
 
         return $this->render('todo/todosCard.html.twig', [
             'todos' => $todos
