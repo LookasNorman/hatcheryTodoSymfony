@@ -25,7 +25,10 @@ menu:
 form:
   delete: Usuń
   edit: Edytuj
-  back: wróć do listy
+  back:
+    all: wróć do listy
+    hallMachines: lista maszyn na hali / kurniku
+    machinesGroups: lista grupy maszyn
   save: Zapisz
   title:
     complaints: reklamacje

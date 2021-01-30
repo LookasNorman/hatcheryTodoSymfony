@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Halls;
 use App\Entity\Machines;
+use App\Entity\MachinesGroups;
 use App\Form\MachinesType;
 use App\Repository\MachinesRepository;
 use App\Repository\TodoRepository;
@@ -109,11 +110,21 @@ class MachinesController extends AbstractController
     }
 
     /**
+     * @Route("/groups/{id}", name="machines_group_index", methods={"GET"})
+     */
+    public function indexGroups(MachinesRepository $machinesRepository, MachinesGroups $machinesGroups): Response
+    {
+        return $this->render('machines/index.html.twig', [
+            'machines' => $machinesRepository->findBy(['groups' => $machinesGroups]),
+        ]);
+    }
+
+    /**
      * @Route("/card/{id}", name="machines_card", methods={"GET"})
      */
     public function card(TodoRepository $todoRepository, Machines $machine): Response
     {
-        $todos = $todoRepository->findBy(['machine' => $machine]);
+        $todos = $todoRepository->machineTodosDone($machine);
 
         return $this->render('machines/card.html.twig', [
             'machine' => $machine,

@@ -27,11 +27,14 @@
                 <td>{{ machines_group.name }}</td>
                 <td>{{ machines_group.description }}</td>
                 <td>
-                    <a href="{{ path('machines_groups_show', {'id': machines_group.id}) }}">
+                    <a class="badge" href="{{ path('machines_groups_show', {'id': machines_group.id}) }}">
                         {% trans %}list.show{% endtrans %}
                     </a>
-                    <a href="{{ path('machines_groups_edit', {'id': machines_group.id}) }}">
+                    <a class="badge" href="{{ path('machines_groups_edit', {'id': machines_group.id}) }}">
                         {% trans %}list.edit{% endtrans %}
+                    </a>
+                    <a class="badge" href="{{ path('machines_group_index', {'id': machines_group.id}) }}">
+                        {% trans %}list.machines.show.list{% endtrans %}
                     </a>
                 </td>
             </tr>

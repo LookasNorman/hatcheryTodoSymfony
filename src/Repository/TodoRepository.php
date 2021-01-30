@@ -46,6 +46,16 @@ class TodoRepository extends ServiceEntityRepository
             ->getArrayResult();
     }
 
+    public function machineTodosDone($machine)
+    {
+        return $this->createQueryBuilder('t')
+            ->andWhere('t.machine = :machine')
+            ->andWhere('t.endDate IS NOT NULL')
+            ->setParameter('machine', $machine)
+            ->orderBy('t.date', 'ASC')
+            ->getQuery()
+            ->getArrayResult();
+    }
 
     // /**
     //  * @return Todo[] Returns an array of Todo objects

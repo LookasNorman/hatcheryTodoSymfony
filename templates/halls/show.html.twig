@@ -22,7 +22,7 @@
         </tbody>
     </table>
 
-    <a class="btn btn-outline-primary" href="{{ path('halls_index') }}">
+    <a class="btn btn-outline-primary" href="{{ path('halls_object_index', {'id': hall.objectAddress.id}) }}">
         {% trans %}form.back{% endtrans %}
     </a>
 
