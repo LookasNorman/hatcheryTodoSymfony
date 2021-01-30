@@ -54,7 +54,7 @@ class TodoRepository extends ServiceEntityRepository
             ->setParameter('machine', $machine)
             ->orderBy('t.date', 'ASC')
             ->getQuery()
-            ->getArrayResult();
+            ->execute();
     }
 
     // /**

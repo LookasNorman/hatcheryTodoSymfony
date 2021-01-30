@@ -69,7 +69,7 @@
                 style="width: 15%">{% trans %}list.machines.card.list.notes{% endtrans %}</th>
         </tr>
         </thead>
-        {% for todo in machine.todos %}
+        {% for todo in todos %}
             <tr>
                 <td class="align-middle text-center">{{ todo.id }}</td>
                 <td class="align-middle text-center">{{ todo.date ? todo.date|date('Y-m-d') : '' }}</td>
