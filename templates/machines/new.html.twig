@@ -3,7 +3,9 @@
 {% block title %}{% trans %}list.machines.new.title{% endtrans %}{% endblock %}
 
 {% block body %}
-    <h1>{% trans %}list.machines.new.create{% endtrans %}</h1>
+    <h1>
+        {% trans %}list.machines.new.create{% endtrans %}
+    </h1>
 
     {{ include('machines/_form.html.twig') }}
 
