@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Halls;
 use App\Entity\Machines;
 use App\Entity\MachinesGroups;
+use App\Entity\ObjectAddress;
 use App\Form\MachinesType;
 use App\Repository\MachinesRepository;
 use App\Repository\TodoRepository;
@@ -130,5 +131,15 @@ class MachinesController extends AbstractController
             'machine' => $machine,
             'todos' => $todos
         ]);
+    }
+
+    /**
+     * @Route("/objects/{id}", name="machines_objects_index", methods={"GET"})
+     */
+    public function indexObjects(MachinesRepository $machinesRepository, ObjectAddress $address): Response
+    {
+        $machines = $machinesRepository->findBy(['objectAddress' => $address]);
+        return $this->json($machines);
+
     }
 }

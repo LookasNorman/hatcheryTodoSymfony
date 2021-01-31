@@ -2,3 +2,28 @@
     {{ form_widget(form) }}
     <button class="btn btn-primary">{{ button_label|default('Save') }}</button>
 {{ form_end(form) }}
+
+{% block javascripts %}
+    <script>
+        window.addEventListener('DOMContentLoaded', () => {
+            const object = $('#todo_objectAddress')
+            const machine = $('#todo_machine')
+
+            object.on('change', function (e) {
+                const selected = $(this).children('option:selected').val();
+                $.ajax({
+                    url: `/pl/machines/objects/${selected}`,
+                    type: "GET",
+                })
+                    .done(function (result) {
+                        machine.empty()
+                        $.each(result, function (index, value) {
+                            var option = `<option value="${value.id}">${value.name}</option>`
+                            machine.append(option)
+                        })
+                    });
+            })
+        })
+
+    </script>
+{% endblock %}
