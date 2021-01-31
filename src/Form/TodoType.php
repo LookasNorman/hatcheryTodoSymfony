@@ -58,6 +58,7 @@ class TodoType extends AbstractType
                 ]
             ])
             ->add('objectAddress', EntityType::class, [
+                'placeholder' => 'Choose an localization',
                 'class' => ObjectAddress::class,
                 'choice_label' => 'name',
                 'attr' => [
