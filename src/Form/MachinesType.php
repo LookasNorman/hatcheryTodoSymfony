@@ -31,13 +31,17 @@ class MachinesType extends AbstractType
             ->add('objectAddress', EntityType::class, [
                 'class' => ObjectAddress::class,
                 'choice_label' => 'name',
+                'placeholder' => 'Choose an location',
                 'attr' => [
                     'class' => 'form-select'
                 ]
             ])
             ->add('hall', EntityType::class, [
+                'placeholder' => 'Choose an hall / building',
                 'class' => Halls::class,
-                'choice_label' => 'name',
+                'choice_label' => function(Halls $halls) {
+                return $halls->getName() . ' - ' . $halls->getObjectAddress()->getName();
+                },
                 'required' => false,
                 'attr' => [
                     'class' => 'form-select'

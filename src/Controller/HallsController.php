@@ -105,4 +105,14 @@ class HallsController extends AbstractController
             'halls' => $hallsRepository->findBy(['objectAddress' => $address]),
         ]);
     }
+
+    /**
+     * @Route("/objects/{id}", name="halls_objects_index", methods={"GET"})
+     */
+    public function indexObjects(HallsRepository $hallsRepository, ObjectAddress $address): Response
+    {
+            $halls = $hallsRepository->findBy(['objectAddress' => $address]);
+            return $this->json($halls);
+
+    }
 }

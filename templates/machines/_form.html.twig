@@ -1,4 +1,29 @@
 {{ form_start(form) }}
     {{ form_widget(form) }}
-    <button class="btn btn-primary">{{ button_label|default('Save') }}</button>
+<button class="btn btn-primary">{{ button_label|default('Save') }}</button>
 {{ form_end(form) }}
+
+{% block javascripts %}
+    <script>
+        window.addEventListener('DOMContentLoaded', () => {
+            const object = $('#machines_objectAddress')
+            const halls = $('#machines_hall')
+
+            object.on('change', function (e) {
+                const selected = $(this).children('option:selected').val();
+                $.ajax({
+                    url: `/pl/halls/objects/${selected}`,
+                    type: "GET",
+                })
+                    .done(function (result) {
+                        halls.empty()
+                        $.each(result, function (index, value) {
+                            var option = `<option value="${value.id}">${value.name}</option>`
+                            halls.append(option)
+                        })
+                    });
+            })
+        })
+
+    </script>
+{% endblock %}

@@ -21,11 +21,11 @@
         </tr>
         <tr>
             <th>{% trans %}list.machines.hall{% endtrans %}</th>
-            <td>{{ machine.hall.name }}</td>
+            <td>{{ machine.hall ? machine.hall.name : '' }}</td>
         </tr>
         <tr>
             <th>{% trans %}list.machines.group{% endtrans %}</th>
-            <td>{{ machine.groups.name }}</td>
+            <td>{{ machine.groups ? machine.groups.name : '' }}</td>
         </tr>
         </tbody>
     </table>
@@ -34,13 +34,17 @@
         {% trans %}form.back.all{% endtrans %}
     </a>
 
+    {% if machine.hall %}
     <a class="btn btn-outline-primary" href="{{ path('machines_hall_index', {'id': machine.hall.id}) }}">
         {% trans %}form.back.hallMachines{% endtrans %}
     </a>
+    {% endif %}
 
+    {% if machine.groups %}
     <a class="btn btn-outline-primary" href="{{ path('machines_group_index', {'id': machine.groups.id}) }}">
         {% trans %}form.back.machinesGroups{% endtrans %}
     </a>
+    {% endif %}
 
     <a class="btn btn-outline-primary" href="{{ path('machines_edit', {'id': machine.id}) }}">
         {% trans %}list.edit{% endtrans %}
