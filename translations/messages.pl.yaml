@@ -61,6 +61,7 @@ list:
     show:
       title: Szczegóły reklamacji
   machines:
+    noRecordsFound: Nie znaleziono maszyn
     card:
       title: Karta ruchu
       number: PROCEDURA PO-NM-6.3/2

@@ -8,9 +8,9 @@ use App\Entity\MachinesGroups;
 use App\Entity\ObjectAddress;
 use App\Form\MachinesType;
 use App\Repository\MachinesRepository;
+use App\Repository\ObjectAddressRepository;
 use App\Repository\TodoRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -26,10 +26,21 @@ class MachinesController extends AbstractController
     /**
      * @Route("/", name="machines_index", methods={"GET"})
      */
-    public function index(MachinesRepository $machinesRepository): Response
+    public function index(MachinesRepository $machinesRepository, ObjectAddressRepository  $objectAddressRepository): Response
     {
+        $objectAddresses = $objectAddressRepository->findAll();
+        $objectMachines = [];
+        foreach($objectAddresses as $objectAddress){
+            $machines = $machinesRepository->findBy([
+                'objectAddress' => $objectAddress
+            ]);
+            $objectMachines += [$objectAddress->getName() => $machines];
+//            dd($objectMachines);
+        }
+
         return $this->render('machines/index.html.twig', [
             'machines' => $machinesRepository->findAll(),
+            'objectMachines' => $objectMachines
         ]);
     }
 
