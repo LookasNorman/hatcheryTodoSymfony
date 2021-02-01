@@ -13,22 +13,24 @@
     <div id="accordion">
         {% for object, machines in objectMachines %}
             <div class="card">
-                <div class="card-header" id="heading_{{loop.index}}">
+                <div class="card-header" id="heading_{{ loop.index }}">
                     <h5 class="mb-0">
-                        <button class="btn btn-link" data-toggle="collapse" data-target="#collapse_{{loop.index}}" aria-expanded="false" aria-controls="collapse_{{loop.index}}">
+                        <button class="btn btn-link" data-toggle="collapse" data-target="#collapse_{{ loop.index }}"
+                                aria-expanded="false" aria-controls="collapse_{{ loop.index }}">
                             {{ object }}
                         </button>
                     </h5>
                 </div>
 
-                <div id="collapse_{{loop.index}}" class="collapse" aria-labelledby="heading_{{loop.index}}" data-parent="#accordion">
+                <div id="collapse_{{ loop.index }}" class="collapse" aria-labelledby="heading_{{ loop.index }}"
+                     data-parent="#accordion">
                     <div class="card-body">
-                        <table class="table">
+                        <table class="table table-hover">
                             <thead>
                             <tr>
                                 <th>{% trans %}list.id{% endtrans %}</th>
                                 <th>{% trans %}list.machines.name{% endtrans %}</th>
-                                <th>{% trans %}list.machines.objectAddress{% endtrans %}</th>
+                                <th>{% trans %}list.machines.hall{% endtrans %}</th>
                                 <th>{% trans %}list.actions{% endtrans %}</th>
                             </tr>
                             </thead>
@@ -37,7 +39,15 @@
                                 <tr>
                                     <td>{{ machine.id }}</td>
                                     <td>{{ machine.name }}</td>
-                                    <td>{{ machine.objectAddress.name }}</td>
+                                    <td>
+                                        {% if machine.hall %}
+                                            <a href="{{ path('machines_hall_index', {'id': machine.hall.id}) }}">
+                                                {{ machine.hall.name }}
+                                            </a>
+                                        {% else %}
+
+                                        {% endif %}
+                                    </td>
                                     <td>
                                         <a class="badge" href="{{ path('machines_show', {'id': machine.id}) }}">
                                             {% trans %}list.show{% endtrans %}

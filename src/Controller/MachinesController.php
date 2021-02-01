@@ -35,11 +35,9 @@ class MachinesController extends AbstractController
                 'objectAddress' => $objectAddress
             ]);
             $objectMachines += [$objectAddress->getName() => $machines];
-//            dd($objectMachines);
         }
 
         return $this->render('machines/index.html.twig', [
-            'machines' => $machinesRepository->findAll(),
             'objectMachines' => $objectMachines
         ]);
     }
@@ -116,7 +114,7 @@ class MachinesController extends AbstractController
      */
     public function indexHalls(MachinesRepository $machinesRepository, Halls $halls): Response
     {
-        return $this->render('machines/index.html.twig', [
+        return $this->render('machines/machine.html.twig', [
             'machines' => $machinesRepository->findBy(['hall' => $halls]),
         ]);
     }
@@ -126,7 +124,7 @@ class MachinesController extends AbstractController
      */
     public function indexGroups(MachinesRepository $machinesRepository, MachinesGroups $machinesGroups): Response
     {
-        return $this->render('machines/index.html.twig', [
+        return $this->render('machines/machine.html.twig', [
             'machines' => $machinesRepository->findBy(['groups' => $machinesGroups]),
         ]);
     }

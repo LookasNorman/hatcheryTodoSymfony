@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {% trans %}list.list{% endtrans %} {% trans %}list.machines.title{% endtrans %}
+{% endblock %}
+
+{% block body %}
+    <h1>{% trans %}list.list{% endtrans %} {% trans %}list.machines.title{% endtrans %}</h1>
+    <a class="btn btn-outline-primary" href="{{ path('machines_new') }}">
+        {% trans %}list.createNew{% endtrans %}
+    </a>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>{% trans %}list.id{% endtrans %}</th>
+            <th>{% trans %}list.machines.name{% endtrans %}</th>
+            <th>{% trans %}list.machines.objectAddress{% endtrans %}</th>
+            <th>{% trans %}list.actions{% endtrans %}</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for machine in machines %}
+            <tr>
+                <td>{{ machine.id }}</td>
+                <td>{{ machine.name }}</td>
+                <td>{{ machine.objectAddress.name }}</td>
+                <td>
+                    <a class="badge" href="{{ path('machines_show', {'id': machine.id}) }}">
+                        {% trans %}list.show{% endtrans %}
+                    </a>
+                    <a class="badge" href="{{ path('machines_edit', {'id': machine.id}) }}">
+                        {% trans %}list.edit{% endtrans %}
+                    </a>
+                    <a class="badge" href="{{ path('machines_card', {'id': machine.id}) }}">
+                        {% trans %}list.machines.card.title{% endtrans %}
+                    </a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">{% trans %}list.noRecordsFound{% endtrans %}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
