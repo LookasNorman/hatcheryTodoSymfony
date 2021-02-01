@@ -24,10 +24,7 @@ class TodoController extends AbstractController
     public function index(TodoRepository $todoRepository): Response
     {
         return $this->render('todo/index.html.twig', [
-            'todos' => $todoRepository->findBy([], [
-                'endDate' => 'ASC',
-                'date' => 'ASC'
-            ]),
+            'todos' => $todoRepository->todos(),
         ]);
     }
 
@@ -115,10 +112,7 @@ class TodoController extends AbstractController
     public function objectTodo(ObjectAddress $objectAddress, TodoRepository $todoRepository)
     {
         return $this->render('todo/index.html.twig', [
-            'todos' => $todoRepository->findBy(['objectAddress' => $objectAddress], [
-                'endDate' => 'ASC',
-                'date' => 'ASC'
-            ]),
+            'todos' => $todoRepository->todosObject($objectAddress),
         ]);
     }
 
