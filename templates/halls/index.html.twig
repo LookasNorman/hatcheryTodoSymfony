@@ -11,39 +11,60 @@
     <a class="btn btn-outline-primary" href="{{ path('halls_new') }}">
         {% trans %}list.createNew{% endtrans %}
     </a>
-    <table class="table">
-        <thead>
-            <tr>
-                <th>{% trans %}list.id{% endtrans %}</th>
-                <th>{% trans %}list.halls.name{% endtrans %}</th>
-                <th>{% trans %}list.halls.description{% endtrans %}</th>
-                <th>{% trans %}list.actions{% endtrans %}</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for hall in halls %}
-            <tr>
-                <td>{{ hall.id }}</td>
-                <td>{{ hall.name }}</td>
-                <td>{{ hall.description }}</td>
-                <td>
-                    <a class="badge" href="{{ path('halls_show', {'id': hall.id}) }}">
-                        {% trans %}list.show{% endtrans %}
-                    </a>
-                    <a class="badge" href="{{ path('halls_edit', {'id': hall.id}) }}">
-                        {% trans %}list.edit{% endtrans %}
-                    </a>
-                    <a class="badge" href="{{ path('machines_hall_index', {'id': hall.id}) }}">
-                        {% trans %}list.machines.show.list{% endtrans %}
-                    </a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="4">{% trans %}list.noRecordsFound{% endtrans %}</td>
-            </tr>
+
+    <div id="accordion">
+        {% for object, halls in objectHalls %}
+            <div class="card">
+                <div class="card-header" id="heading_{{ loop.index }}">
+                    <h5 class="mb-0">
+                        <button class="btn btn-link" data-toggle="collapse" data-target="#collapse_{{ loop.index }}"
+                                aria-expanded="false" aria-controls="collapse_{{ loop.index }}">
+                            {{ object }}
+                        </button>
+                    </h5>
+                </div>
+
+                <div id="collapse_{{ loop.index }}" class="collapse" aria-labelledby="heading_{{ loop.index }}"
+                     data-parent="#accordion">
+                    <div class="card-body">
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th>{% trans %}list.id{% endtrans %}</th>
+                                <th>{% trans %}list.halls.name{% endtrans %}</th>
+                                <th>{% trans %}list.halls.description{% endtrans %}</th>
+                                <th>{% trans %}list.actions{% endtrans %}</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for hall in halls %}
+                                <tr>
+                                    <td>{{ hall.id }}</td>
+                                    <td>{{ hall.name }}</td>
+                                    <td>{{ hall.description }}</td>
+                                    <td>
+                                        <a class="badge" href="{{ path('halls_show', {'id': hall.id}) }}">
+                                            {% trans %}list.show{% endtrans %}
+                                        </a>
+                                        <a class="badge" href="{{ path('halls_edit', {'id': hall.id}) }}">
+                                            {% trans %}list.edit{% endtrans %}
+                                        </a>
+                                        <a class="badge" href="{{ path('machines_hall_index', {'id': hall.id}) }}">
+                                            {% trans %}list.machines.show.list{% endtrans %}
+                                        </a>
+                                    </td>
+                                </tr>
+                            {% else %}
+                                <tr>
+                                    <td colspan="4">{% trans %}list.noRecordsFound{% endtrans %}</td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
         {% endfor %}
-        </tbody>
-    </table>
+    </div>
 
 {% endblock %}

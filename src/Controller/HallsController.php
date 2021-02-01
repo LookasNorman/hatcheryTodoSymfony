@@ -6,6 +6,7 @@ use App\Entity\Halls;
 use App\Entity\ObjectAddress;
 use App\Form\HallsType;
 use App\Repository\HallsRepository;
+use App\Repository\ObjectAddressRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -22,10 +23,18 @@ class HallsController extends AbstractController
     /**
      * @Route("/", name="halls_index", methods={"GET"})
      */
-    public function index(HallsRepository $hallsRepository): Response
+    public function index(HallsRepository $hallsRepository, ObjectAddressRepository $objectAddressRepository): Response
     {
+        $objectAddresses = $objectAddressRepository->findAll();
+        $objectHalls = [];
+        foreach($objectAddresses as $objectAddress){
+            $halls = $hallsRepository->findBy([
+                'objectAddress' => $objectAddress
+            ]);
+            $objectHalls += [$objectAddress->getName() => $halls];
+        }
         return $this->render('halls/index.html.twig', [
-            'halls' => $hallsRepository->findAll(),
+            'objectHalls' => $objectHalls,
         ]);
     }
 
@@ -101,7 +110,7 @@ class HallsController extends AbstractController
      */
     public function indexObject(HallsRepository $hallsRepository, ObjectAddress $address): Response
     {
-        return $this->render('halls/index.html.twig', [
+        return $this->render('halls/object.html.twig', [
             'halls' => $hallsRepository->findBy(['objectAddress' => $address]),
         ]);
     }
