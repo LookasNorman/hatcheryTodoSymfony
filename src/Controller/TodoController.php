@@ -140,15 +140,14 @@ class TodoController extends AbstractController
         ]);
     }
 
-    public function todosNextWeek(): Response
+    public function todosNextWeek(TodoRepository $todoRepository): Response
     {
-        $em = $this->getDoctrine();
         $date = new \DateTime('now');
-        $nextDate = $date->add(new \DateInterval('P7D'));
-        $todoRepository = $em->getRepository(Todo::class);
+        $nextDate = new \DateTime('now');
+        $nextDate = $nextDate->add(new \DateInterval('P7D'));
+
         $todos = $todoRepository
             ->todosNext($date->format('Y-m-d'), $nextDate->format('Y-m-d'));
-
         return $this->render('todo/todosCard.html.twig', [
             'todos' => $todos
         ]);

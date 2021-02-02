@@ -63,7 +63,7 @@ class TodoRepository extends ServiceEntityRepository
                 'nextDate' => $nextDate
             ])
             ->getQuery()
-            ->getArrayResult();
+            ->execute();
     }
 
     public function machineTodosDone($machine)
