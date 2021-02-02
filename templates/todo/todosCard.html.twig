@@ -1,19 +1,46 @@
 {% block body %}
     <div class="example-wrapper">
         {% if app.user %}
-        {% if todos %}
-            {% for todo in todos %}
-                <div class="bg-light">
-                    <h6 class="text-center"><a href="{{ path('todo_show', {'id': todo.id}) }}">{{todo.title}}</a></h6>
-                    <p>
-                        <span class="badge badge-secondary">{{ todo.objectAddress.name}}</span>
-                        <span class="badge badge-secondary">{{ todo.date | date('Y-m-d')}}</span>
-                    </p>
-                </div>
-            {% endfor %}
+            {% if todos %}
+                {% for todo in todos %}
+                    <div class="bg-light">
+                        <h6 class="text-center">
+                            <a href="{{ path('todo_show', {'id': todo.id}) }}">{{ todo.title }}</a>
+                        </h6>
+                        <p>
+                            <span class="badge badge-secondary">{{ todo.objectAddress.name }}</span>
+                            <span class="badge badge-secondary">{{ todo.date | date('Y-m-d') }}</span>
+                            <span style="color: green" data-toggle="tooltip" data-placement="right"
+                                  title="Oznacz jako wykonane">
+                                <i data-todo="{{ todo.id }}" class="done fas fa-check-circle"></i>
+                            </span>
+                        </p>
+                    </div>
+                {% endfor %}
             {% else %}
-                <p class="bg-success text-white">Brak zadań</p>
+                <p class="bg-success text-white">{% trans %}list.todo.empty{% endtrans %}</p>
             {% endif %}
-            {% endif %}
-        </div>
+        {% endif %}
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+        window.addEventListener('DOMContentLoaded', () => {
+            const object = $('.done')
+
+            object.on('click', function (e) {
+                const selected = $(this)
+                const todoId = selected.attr("data-todo")
+                $.ajax({
+                    url: `/pl/todo/close/${todoId}`,
+                    type: "GET",
+                })
+                    .done(function (result) {
+                        selected.parent().parent().parent().empty()
+                    });
+            })
+        })
+
+    </script>
 {% endblock %}

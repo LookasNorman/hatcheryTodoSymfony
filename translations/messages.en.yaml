@@ -3,6 +3,9 @@ site:
   description: An application that helps to manage the maintenance team's tasks, complaints to external suppliers and parts purchases.
   todo:
     title: Todo list
+    overdue: Overdue
+    today: Today
+    nextWeek: Next 7 days
 menu:
   home: Home page
   users:
@@ -22,7 +25,10 @@ menu:
 form:
   delete: Delete
   edit: Edit
-  back: back to list
+  back:
+    all: back to list
+    hallMachines: machines list in hall
+    machinesGroups: machines list in machine group
   save: Save
   title:
     complaints: complaints
@@ -55,13 +61,37 @@ list:
     show:
       title: Complaints details
   machines:
+    noRecordsFound: No records found
+    card:
+      title: Karta ruchu
+      number: PROCEDURA PO-NM-6.3/2
+      version: 'Wersja: 01'
+      site: Site
+      date: Date
+      person: 'Wydał: Cezary Komorowski'
+      form:
+        title: FORMULARZ
+        number: 'Numer: F-PO-NM-2'
+      list:
+        title: Wykonane przeglądy i remonty urządzenia
+        lp: Lp.
+        date:
+          planned: Planned date
+          end: End date
+        description: 'Charakter remontu lub przeglądu: bieżący, średni, planowy, ponadplanowy (awaryjny), wymienić zakres robót'
+        person: Potwierdzenie wykonania (osoba wykonująca przegląd)
+        notes: Uwagi
     title: machines
     name: Name
     objectAddress: Object address
+    hall: Hall
+    group: Machines group
+    s/n: Serial number
     new:
       title: New machine
       create: Create new machine
     show:
+      list: Machines list
       title: Machines details
   objectAddress:
     title: object addresses
@@ -76,6 +106,7 @@ list:
     show:
       title: Object address details
   todo:
+    empty: No records found
     title: todo
     name: Name
     description: Description
@@ -137,4 +168,5 @@ list:
       title: New hall
       create: Add hall
     show:
+      list: Hall list
       title: Hall details

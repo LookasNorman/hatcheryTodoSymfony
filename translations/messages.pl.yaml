@@ -106,6 +106,7 @@ list:
     show:
       title: Szczegóły lokalizacji
   todo:
+    empty: Brak zadań
     title: zadań
     name: Nazwa
     description: Opis

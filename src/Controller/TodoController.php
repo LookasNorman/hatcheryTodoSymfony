@@ -157,7 +157,6 @@ class TodoController extends AbstractController
     public function todosObject(): Response
     {
         $em = $this->getDoctrine();
-        $date = new \DateTime('2021-01-06');
         $objectAddressRepository = $em->getRepository(ObjectAddress::class);
         $todoTypeRepository = $em->getRepository(\App\Entity\TodoType::class);
         $todoRepository = $em->getRepository(Todo::class);
@@ -179,7 +178,21 @@ class TodoController extends AbstractController
         $response->headers->set('Content-Type', 'application/json');
 
         return $response;
+    }
 
+    /**
+     * @Route("/close/{id}", name="todo_close", methods={"GET", "POST"})
+     */
+    public function todoClose($id, TodoRepository $todoRepository): Response
+    {
+        $date = new \DateTime('now');
+        $em = $this->getDoctrine()->getManager();
+
+        $todo = $todoRepository->find($id);
+        $todo->setEndDate($date);
+        $em->persist($todo);
+        $em->flush();
+        return $this->json($todo);
     }
 
 }
