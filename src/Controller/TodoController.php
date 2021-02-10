@@ -191,6 +191,17 @@ class TodoController extends AbstractController
         $todo->setEndDate($date);
         $em->persist($todo);
         $em->flush();
+
+        if (!empty($todo->getRepeatTime()) and !empty($todo->getEndDate())) {
+            $days = $todo->getRepeatTime();
+            $date = $todo->getEndDate();
+            $date->add(new \DateInterval('P' . $days . 'D'));
+            $newTodo = clone $todo;
+            $newTodo->setDate($date);
+            $newTodo->setEndDate(null);
+            $em->persist($newTodo);
+            $em->flush();
+        }
         return $this->json($todo);
     }
 

@@ -12,7 +12,7 @@
                             <span class="badge badge-secondary">{{ todo.date | date('Y-m-d') }}</span>
                             <span style="color: green" data-toggle="tooltip" data-placement="right"
                                   title="Oznacz jako wykonane">
-                                <i data-todo="{{ todo.id }}" class="done fas fa-check-circle"></i>
+                                <i data-todo="{{ todo.id }}" class="done far fa-square"></i>
                             </span>
                         </p>
                     </div>
@@ -24,23 +24,3 @@
     </div>
 {% endblock %}
 
-{% block javascripts %}
-    <script>
-        window.addEventListener('DOMContentLoaded', () => {
-            const object = $('.done')
-
-            object.on('click', function (e) {
-                const selected = $(this)
-                const todoId = selected.attr("data-todo")
-                $.ajax({
-                    url: `/pl/todo/close/${todoId}`,
-                    type: "GET",
-                })
-                    .done(function (result) {
-                        selected.parent().parent().parent().empty()
-                    });
-            })
-        })
-
-    </script>
-{% endblock %}
