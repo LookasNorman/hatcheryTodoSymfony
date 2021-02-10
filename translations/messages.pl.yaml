@@ -1,3 +1,11 @@
+login:
+  logged: Jesteś zalogowany jako
+  login: Zaloguj się
+  logout: Wyloguj się
+  email: Adres email
+  password: Hasło
+  button:
+    login: Zaloguj
 site:
   title: System zarządzania utrzymania ruchu
   description: Aplikacja pomagająca zarządzać zadaniami zespołu utrzymania ruchu, zgłaszanymi reklamacjami do dostawców zewnętrznych oraz zakupami części.

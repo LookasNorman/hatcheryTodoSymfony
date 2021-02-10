@@ -1,3 +1,11 @@
+login:
+  logged: You are logged in as
+  login: Please sign in
+  logout: Logout
+  email: E-Mail Address
+  password: Password
+  button:
+    login: Login
 site:
   title: Maintenance management system
   description: An application that helps to manage the maintenance team's tasks, complaints to external suppliers and parts purchases.
