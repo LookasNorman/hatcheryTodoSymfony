@@ -20,6 +20,8 @@ class TodoController extends AbstractController
 {
     /**
      * @Route("/", name="todo_index", methods={"GET"})
+     * @param TodoRepository $todoRepository
+     * @return Response
      */
     public function index(TodoRepository $todoRepository): Response
     {
@@ -30,6 +32,8 @@ class TodoController extends AbstractController
 
     /**
      * @Route("/new", name="todo_new", methods={"GET","POST"})
+     * @param Request $request
+     * @return Response
      */
     public function new(Request $request): Response
     {
@@ -53,6 +57,8 @@ class TodoController extends AbstractController
 
     /**
      * @Route("/{id}", name="todo_show", methods={"GET"})
+     * @param Todo $todo
+     * @return Response
      */
     public function show(Todo $todo): Response
     {
@@ -63,6 +69,9 @@ class TodoController extends AbstractController
 
     /**
      * @Route("/{id}/edit", name="todo_edit", methods={"GET","POST"})
+     * @param Request $request
+     * @param Todo $todo
+     * @return Response
      */
     public function edit(Request $request, Todo $todo): Response
     {
@@ -73,14 +82,7 @@ class TodoController extends AbstractController
             $em = $this->getDoctrine()->getManager();
             $em->flush();
             if (!empty($todo->getRepeatTime()) and !empty($todo->getEndDate())) {
-                $days = $todo->getRepeatTime();
-                $date = $todo->getEndDate();
-                $date->add(new \DateInterval('P' . $days . 'D'));
-                $newTodo = clone $todo;
-                $newTodo->setDate($date);
-                $newTodo->setEndDate(null);
-                $em->persist($newTodo);
-                $em->flush();
+                $newTodo = $this->cloneTodo($todo);
             }
 
             return $this->redirectToRoute('todo_index');
@@ -94,6 +96,9 @@ class TodoController extends AbstractController
 
     /**
      * @Route("/{id}", name="todo_delete", methods={"DELETE"})
+     * @param Request $request
+     * @param Todo $todo
+     * @return Response
      */
     public function delete(Request $request, Todo $todo): Response
     {
@@ -108,8 +113,11 @@ class TodoController extends AbstractController
 
     /**
      * @Route("/menu/{id}", name="todo_menu", methods={"GET"})
+     * @param ObjectAddress $objectAddress
+     * @param TodoRepository $todoRepository
+     * @return Response
      */
-    public function objectTodo(ObjectAddress $objectAddress, TodoRepository $todoRepository)
+    public function objectTodo(ObjectAddress $objectAddress, TodoRepository $todoRepository): Response
     {
         return $this->render('todo/index.html.twig', [
             'todos' => $todoRepository->todosObject($objectAddress),
@@ -181,6 +189,9 @@ class TodoController extends AbstractController
 
     /**
      * @Route("/close/{id}", name="todo_close", methods={"GET", "POST"})
+     * @param $id
+     * @param TodoRepository $todoRepository
+     * @return Response
      */
     public function todoClose($id, TodoRepository $todoRepository): Response
     {
@@ -193,16 +204,30 @@ class TodoController extends AbstractController
         $em->flush();
 
         if (!empty($todo->getRepeatTime()) and !empty($todo->getEndDate())) {
-            $days = $todo->getRepeatTime();
-            $date = $todo->getEndDate();
-            $date->add(new \DateInterval('P' . $days . 'D'));
-            $newTodo = clone $todo;
-            $newTodo->setDate($date);
-            $newTodo->setEndDate(null);
-            $em->persist($newTodo);
-            $em->flush();
+            $newTodo = $this->cloneTodo($todo);
+
+            return $this->json([
+                'todo' => $todo,
+                'newTodo' => $newTodo
+            ]);
         }
         return $this->json($todo);
+    }
+
+    private function cloneTodo(Todo $todo): Todo
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $days = $todo->getRepeatTime();
+        $date = $todo->getEndDate();
+        $date->add(new \DateInterval('P' . $days . 'D'));
+        $newTodo = clone $todo;
+        $newTodo->setDate($date);
+        $newTodo->setEndDate(null);
+        $em->persist($newTodo);
+        $em->flush();
+
+        return $newTodo;
     }
 
 }
