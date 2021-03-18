@@ -24,19 +24,19 @@
             <hr/>
             <div class="card-deck">
                 <div class="card bg-danger">
-                    <div class="card-body">
+                    <div class="card-body" id="todoOverdue">
                         <h5 class="card-title">{% trans %}site.todo.overdue{% endtrans %}</h5>
                         {{ render(controller('App\\Controller\\TodoController::todosOverdue')) }}
                     </div>
                 </div>
                 <div class="card bg-primary">
-                    <div class="card-body">
+                    <div class="card-body" id="todoToday">
                         <h5 class="card-title">{% trans %}site.todo.today{% endtrans %}</h5>
                         {{ render(controller('App\\Controller\\TodoController::todosToday')) }}
                     </div>
                 </div>
                 <div class="card bg-success">
-                    <div class="card-body">
+                    <div class="card-body" id="todoNextWeek">
                         <h5 class="card-title">{% trans %}site.todo.nextWeek{% endtrans %}</h5>
                         {{ render(controller('App\\Controller\\TodoController::todosNextWeek')) }}
                     </div>

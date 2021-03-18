@@ -220,9 +220,9 @@ class TodoController extends AbstractController
 
         $days = $todo->getRepeatTime();
         $date = $todo->getEndDate();
-        $date->add(new \DateInterval('P' . $days . 'D'));
+        $newDate = strtotime("+ 7 days", $date);
         $newTodo = clone $todo;
-        $newTodo->setDate($date);
+        $newTodo->setDate($newDate);
         $newTodo->setEndDate(null);
         $em->persist($newTodo);
         $em->flush();
