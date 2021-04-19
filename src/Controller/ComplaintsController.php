@@ -24,8 +24,9 @@ class ComplaintsController extends AbstractController
      */
     public function index(ComplaintsRepository $complaintsRepository): Response
     {
+        $complaints = $complaintsRepository->findBy(['removalDate' => null], ['filingDate' => 'ASC']);
         return $this->render('complaints/index.html.twig', [
-            'complaints' => $complaintsRepository->findAll(),
+            'complaints' => $complaints,
         ]);
     }
 
